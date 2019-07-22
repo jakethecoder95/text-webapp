@@ -3,15 +3,28 @@ import React from "react";
 import { connect } from "react-redux";
 import { INIT_APP } from "../redux/types";
 
+import LoggedInPage from "./LoggedInPage/LoggedInPage";
+import StarterPage from "./StarterPage/StarterPage";
+
 class App extends React.Component {
   componentDidMount() {
     this.props.initApp();
   }
 
+  renderPage = () => {
+    if (!this.props.isLoggedIn) {
+      return <StarterPage />;
+    }
+    return <LoggedInPage />;
+  };
+
   render() {
     return (
-      <div className="logo">
-        Group<span>Text</span>
+      <div>
+        <div className="logo">
+          Group<span>Text</span>
+        </div>
+        <main className="container">{this.renderPage()}</main>
       </div>
     );
   }

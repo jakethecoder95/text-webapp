@@ -4,12 +4,16 @@ import store from "store";
 import { SIGN_IN, SIGN_OUT } from "../types";
 
 function* signIn({ email, password }) {
-  yield console.log("here");
+  yield console.log("signing in");
 }
 
 function* signOut() {
   store.clearAll();
-  yield console.log("here");
+  yield console.log("signing out");
+}
+
+function* signUp(userInfo) {
+  yield console.log("signing up...");
 }
 
 function createAuthSaga() {

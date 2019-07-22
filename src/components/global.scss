@@ -11,3 +11,27 @@ body {
     color: rgb(0, 195, 255);
   }
 }
+
+.link {
+  color: rgb(0, 195, 255);
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  div {
+    color: rgba(204, 204, 204, 0.616);
+    font-size: 1.25em;
+    transition: 250ms;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  div.active {
+    color: rgb(204, 204, 204);
+    border-bottom: 3px solid rgb(204, 204, 204);
+  }
+}
+
+.page-contents {
+  transition: 250ms;
+}
