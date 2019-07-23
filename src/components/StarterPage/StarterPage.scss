@@ -1,7 +1,9 @@
 .starter-page {
-  .form {
-    max-width: 500px;
+  .starter-page__form {
+    transition: opacity 250ms;
+    max-width: 700px;
     margin: auto;
+    animation: fadeIn 500ms ease-in;
 
     button {
       width: 100%;
@@ -9,9 +11,29 @@
       color: rgb(0, 195, 255);
       color: white;
     }
+    hr {
+      border: 0;
+      height: 1px;
+      margin: 1.5rem 0;
+      background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 255, 255, 0)
+      );
+    }
   }
   .starter-page__content {
     padding-top: 2rem;
     padding-bottom: 2rem;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
   }
 }

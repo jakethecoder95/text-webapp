@@ -16,8 +16,7 @@ const Login = props => {
       onSubmit={onSubmit}
       validate={validate}
       render={({ handleSubmit, pristine, invalid }) => (
-        <form onSubmit={handleSubmit} className="form">
-          <h2>Your Personal Info</h2>
+        <form onSubmit={handleSubmit} className="starter-page__form">
           <Field name="email" label="Email" component={FormField} />
           <Field
             name="password"
