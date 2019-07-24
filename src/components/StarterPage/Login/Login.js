@@ -1,14 +1,29 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Form, Field } from "react-final-form";
 
 import FormField from "../FormField/FormField";
+import { SIGN_IN } from "../../../redux/types";
 
 const Login = props => {
   const onSubmit = userInfo => {
-    console.log(userInfo);
+    props.login(userInfo);
   };
-  const validate = items => {
-    console.log(items);
+  const validate = values => {
+    const errors = {};
+    const loginError = props.asyncErrors;
+    if (loginError) {
+      if (loginError.type === "email" && loginError.value === values.email) {
+        errors.email = loginError.message;
+      }
+      if (
+        loginError.type === "password" &&
+        loginError.value === values.password
+      ) {
+        errors.password = loginError.message;
+      }
+    }
+    return errors;
   };
 
   return (
@@ -37,4 +52,15 @@ const Login = props => {
   );
 };
 
-export default Login;
+const mapStateToProps = ({ errors }) => ({
+  asyncErrors: errors.signin
+});
+
+const mapDispatchToProps = dispatch => ({
+  login: userInfo => dispatch({ type: SIGN_IN, payload: { ...userInfo } })
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

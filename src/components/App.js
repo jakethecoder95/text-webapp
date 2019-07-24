@@ -12,7 +12,7 @@ class App extends React.Component {
   }
 
   renderPage = () => {
-    if (!this.props.isLoggedIn) {
+    if (!this.props.isSignedIn) {
       return <StarterPage />;
     }
     return <LoggedInPage />;
@@ -31,7 +31,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = ({ auth }) => ({
-  isLoggedIn: auth.isLoggedIn
+  isSignedIn: auth.isSignedIn
 });
 
 const mapDispatchToProps = dispatch => ({

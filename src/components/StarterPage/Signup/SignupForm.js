@@ -1,16 +1,27 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
+import { connect } from "react-redux";
 
 import FormField from "../FormField/FormField";
 import isEmail from "../../../util/validateEmail";
 import isPhoneNumber from "../../../util/validatePhone";
+import { SIGN_UP } from "../../../redux/types";
 
 const SignupForm = props => {
   const onSubmit = userInfo => {
-    console.log(userInfo);
+    props.signup(userInfo);
   };
   const validate = values => {
     const errors = {};
+    const asyncErrors = props.asyncErrors;
+
+    if (asyncErrors) {
+      asyncErrors.data.forEach(err => {
+        if (values[err.param] === err.value) {
+          errors[err.param] = err.msg;
+        }
+      });
+    }
 
     if (!values.email) {
       errors.email = "Required";
@@ -83,4 +94,14 @@ const SignupForm = props => {
   );
 };
 
-export default SignupForm;
+const mapStateToProps = ({ errors }) => ({
+  asyncErrors: errors.signup
+});
+
+const mapDispatchToProps = dispatch => ({
+  signup: userInfo => dispatch({ type: SIGN_UP, payload: userInfo })
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignupForm);
