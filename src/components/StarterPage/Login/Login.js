@@ -31,7 +31,10 @@ const Login = props => {
       onSubmit={onSubmit}
       validate={validate}
       render={({ handleSubmit, pristine, invalid }) => (
-        <form onSubmit={handleSubmit} className="starter-page__form">
+        <form
+          onSubmit={handleSubmit}
+          className="page-content starter-page__form"
+        >
           <Field name="email" label="Email" component={FormField} />
           <Field
             name="password"

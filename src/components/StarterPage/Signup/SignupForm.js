@@ -25,7 +25,7 @@ const SignupForm = props => {
 
     if (!values.email) {
       errors.email = "Required";
-    } else if (!isEmail(values.email)) {
+    } else if (!isEmail(values.email.trim())) {
       errors.email = "Invalid email";
     }
     if (!values.name) {
@@ -38,7 +38,7 @@ const SignupForm = props => {
     }
     if (!values.nexmoNumber) {
       errors.nexmoNumber = "Required";
-    } else if (!isPhoneNumber(values.nexmoNumber)) {
+    } else if (!isPhoneNumber(values.nexmoNumber.trim())) {
       errors.nexmoNumber = "Invalid phone number";
     }
     if (!values.apiKey) {

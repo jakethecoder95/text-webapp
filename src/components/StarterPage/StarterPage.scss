@@ -3,7 +3,6 @@
     transition: opacity 250ms;
     max-width: 700px;
     margin: auto;
-    animation: fadeIn 500ms ease-in;
 
     button {
       width: 100%;
@@ -26,14 +25,5 @@
   .starter-page__content {
     padding-top: 2rem;
     padding-bottom: 2rem;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 100%;
   }
 }

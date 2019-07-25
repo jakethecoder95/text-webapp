@@ -19,6 +19,7 @@ body {
 .navigation {
   display: flex;
   justify-content: center;
+  font-size: 0.9em;
   div {
     color: rgba(204, 204, 204, 0.616);
     font-size: 1.25em;
@@ -26,12 +27,28 @@ body {
     padding: 10px 20px;
     cursor: pointer;
   }
+  @media (min-width: 700px) {
+    font-size: 1em;
+  }
+  @media (max-width: 346px) {
+    font-size: 0.7em;
+  }
+
   div.active {
     color: rgb(204, 204, 204);
     border-bottom: 3px solid rgb(204, 204, 204);
   }
 }
 
-.page-contents {
-  transition: 250ms;
+.page-content {
+  animation: fadeIn 500ms ease-in;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
