@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+
+import MessageInput from "./MessageInput/MessageInput";
 
 const Text = props => {
-  return <div className="page-content">TextPate</div>;
+  const [message, setMessage] = useState("");
+  return (
+    <div className="page-content">
+      <div className={"logged-in-page"}>
+        <MessageInput
+          message={message}
+          onMessageChange={msg => setMessage(msg)}
+        />
+      </div>
+    </div>
+  );
 };
 
 export default Text;

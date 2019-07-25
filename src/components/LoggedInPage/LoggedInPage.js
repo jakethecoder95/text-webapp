@@ -1,3 +1,4 @@
+import "./LoggedInPage.scss";
 import React, { useState } from "react";
 
 import Nav from "./Nav/Nav";
