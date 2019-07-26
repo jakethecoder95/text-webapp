@@ -10,7 +10,7 @@
     padding: 10px;
 
     &:focus {
-      border: solid lighten(rgb(28, 32, 34), 10%);
+      border: solid 1px lighten(rgb(28, 32, 34), 10%);
       outline: none;
     }
   }
