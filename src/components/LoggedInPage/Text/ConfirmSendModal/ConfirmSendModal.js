@@ -1,18 +1,31 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 
-const ConfirmSendModal = ({ show, handleClose }) => (
-  <Modal show={show} onHide={handleClose} centered style={{ color: "#000" }}>
-    <Modal.Header closeButton>
-      <Modal.Title>Modal heading</Modal.Title>
+import Overview from "./Overview";
+
+const ConfirmSendModal = props => (
+  <Modal
+    show={props.show}
+    onHide={props.handleClose}
+    centered
+    style={{ color: "#000" }}
+  >
+    <Modal.Header>
+      <h2 style={{ width: "100%", textAlign: "center" }}>Please Confirm</h2>
     </Modal.Header>
-    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+    <Modal.Body>
+      <Overview
+        message={props.message}
+        password={props.password}
+        onPasswordChange={props.onPasswordChange}
+      />
+    </Modal.Body>
     <Modal.Footer>
-      <button className="btn" onClick={handleClose}>
-        Close
+      <button className="btn" onClick={props.handleClose}>
+        Nah
       </button>
-      <button className="btn btn-primary" onClick={handleClose}>
-        Save Changes
+      <button className="btn btn-primary" onClick={props.handleClose}>
+        Send It!
       </button>
     </Modal.Footer>
   </Modal>

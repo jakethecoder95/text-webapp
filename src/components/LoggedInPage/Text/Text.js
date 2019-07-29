@@ -12,6 +12,7 @@ const Text = props => {
   const [message, setMessage] = useState(initialState.message);
   const [maxTextCharLength] = useState(160);
   const [firstSendBtnClicked, setFirstSendBtnClicked] = useState(false);
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     return function cleanup() {
@@ -33,6 +34,7 @@ const Text = props => {
               maxTextCharLength={maxTextCharLength}
             />
             <SendTextBtn
+              message={message}
               handleBtnClicked={() => setFirstSendBtnClicked(true)}
             />
           </div>
@@ -40,7 +42,13 @@ const Text = props => {
       </div>
       <ConfirmSendModal
         show={firstSendBtnClicked}
-        handleClose={() => setFirstSendBtnClicked(false)}
+        handleClose={() => {
+          setPassword("");
+          setFirstSendBtnClicked(false);
+        }}
+        message={message}
+        password={password}
+        onPasswordChange={setPassword}
       />
     </>
   );
