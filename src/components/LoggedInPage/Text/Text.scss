@@ -8,6 +8,15 @@
     font-weight: bolder;
     margin-bottom: -40px;
   }
+  @media (min-width: 700px) {
+    h1 {
+      font-size: 30em;
+    }
+    h2 {
+      font-size: 3em;
+      margin-bottom: -80px;
+    }
+  }
 }
 
 .text-under {
