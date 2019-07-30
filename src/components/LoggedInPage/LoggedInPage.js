@@ -11,7 +11,7 @@ const LoggedInPage = props => {
 
   const renderPage = () => {
     if (active === "text") {
-      return <Text />;
+      return <Text setActive={setActive} />;
     }
     if (active === "group") {
       return <Group />;

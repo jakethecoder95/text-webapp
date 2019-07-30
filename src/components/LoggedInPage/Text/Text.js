@@ -1,10 +1,11 @@
 import "./Text.scss";
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 
 import MessageInput from "./MessageInput/MessageInput";
 import CharacterCnt from "./CharacterCnt/CharacterCnt";
 import SendTextBtn from "./SendTextBtn/SendTextBtn";
-import ConfirmSendModal from "./ConfirmSendModal/ConfirmSendModal";
+import HandleSendModal from "./HandleSendModal/HandleSendModal";
 
 const initialState = { message: "" };
 
@@ -12,13 +13,31 @@ const Text = props => {
   const [message, setMessage] = useState(initialState.message);
   const [maxTextCharLength] = useState(160);
   const [firstSendBtnClicked, setFirstSendBtnClicked] = useState(false);
-  const [password, setPassword] = useState("");
 
   useEffect(() => {
     return function cleanup() {
       initialState.message = message;
     };
   });
+
+  if (props.people.length === 0) {
+    return (
+      <div className="page-content text-center">
+        <div className="no-people">
+          <h2>GROUP EMPTY</h2>
+          <h1>
+            <i className="fa fa-plus" />
+          </h1>
+          <button
+            className="btn btn-primary"
+            onClick={() => props.setActive("group")}
+          >
+            Add Someone
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -40,18 +59,18 @@ const Text = props => {
           </div>
         </div>
       </div>
-      <ConfirmSendModal
+      <HandleSendModal
         show={firstSendBtnClicked}
-        handleClose={() => {
-          setPassword("");
-          setFirstSendBtnClicked(false);
-        }}
+        handleFirstSendBtnClicked={setFirstSendBtnClicked}
         message={message}
-        password={password}
-        onPasswordChange={setPassword}
+        clearMessage={() => setMessage("")}
       />
     </>
   );
 };
 
-export default Text;
+const mapStateToProps = ({ group }) => ({
+  people: group.people
+});
+
+export default connect(mapStateToProps)(Text);

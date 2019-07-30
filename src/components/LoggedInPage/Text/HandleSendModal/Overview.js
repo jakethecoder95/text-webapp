@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 
 const Overview = props => {
   const textsAmt = Math.floor(props.message.length / 160) + 1;
-  const price = textsAmt * 75 * props.people.length * 0.0001;
-  console.log(textsAmt);
+  const price = 0.0075 * textsAmt * props.people.length;
 
   return (
     <div
@@ -12,12 +11,15 @@ const Overview = props => {
       style={{ maxWidth: "350px", margin: "1rem auto" }}
     >
       <h4>Total</h4>
-      <h1>${price}</h1>
+      <h1>${price.toFixed(2)}</h1>
       <p>
         Your sending {textsAmt} text{textsAmt > 1 ? "s" : ""} to{" "}
         {props.people.length} people
       </p>
       <div className="form-group">
+        {props.errors.password && (
+          <p className="alert alert-danger">{props.errors.password}</p>
+        )}
         <input
           className="form-control text-center"
           value={props.password}
@@ -31,7 +33,7 @@ const Overview = props => {
 };
 
 const mapStateToProps = ({ group }) => ({
-  people: new Array(50)
+  people: group.people
 });
 
 export default connect(mapStateToProps)(Overview);
