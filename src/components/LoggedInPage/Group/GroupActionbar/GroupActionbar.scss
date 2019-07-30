@@ -1,0 +1,41 @@
+.group-page {
+  .navbar {
+    margin-top: 1rem;
+    justify-content: space-between;
+  }
+  .navbar.navbar-dark,
+  .navbar.bg-dark {
+    background-color: lighten(rgb(28, 32, 34), 3%);
+  }
+
+  .btn-circle {
+    background-color: rgb(0, 195, 255);
+    color: rgb(255, 255, 255);
+    height: 2rem;
+    width: 2rem;
+    padding: 0.1rem;
+  }
+
+  .new-person__form {
+    display: flex;
+    max-width: 500px;
+    .names {
+      display: flex;
+      width: 200%;
+    }
+    input {
+      margin: 5px;
+    }
+    .phone-number__input {
+      max-width: 96.5%;
+    }
+
+    @media (max-width: 990px) {
+      flex-direction: column;
+      padding: 0.5rem 0 0.5rem 2rem;
+      .names {
+        width: 100%;
+      }
+    }
+  }
+}
