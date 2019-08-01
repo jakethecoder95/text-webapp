@@ -58,7 +58,7 @@ const SignupForm = props => {
       render={({ handleSubmit, pristine, invalid }) => (
         <form onSubmit={handleSubmit}>
           <h2 className="text-center">Your Personal Info</h2>
-          <hr />
+          <hr className="hr" />
           <Field name="email" label="Email" component={FormField} />
           <Field name="name" label="Name" component={FormField} />
           <Field
@@ -68,7 +68,7 @@ const SignupForm = props => {
             component={FormField}
           />
           <h2 className="text-center">Your Nexmo Info</h2>
-          <hr />
+          <hr className="hr" />
           <Field
             name="nexmoNumber"
             label="Nexmo Number"

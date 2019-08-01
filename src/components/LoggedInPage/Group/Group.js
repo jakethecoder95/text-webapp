@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import GroupActionbar from "./GroupActionbar/GroupActionbar";
+import Errors from "./Errors/Errors";
+import PeopleList from "./PeopleList/PeopleList";
 
 const Group = props => {
+  const [errors, setErrors] = useState({});
+
   return (
     <div className="group-page page-content">
-      <GroupActionbar />
+      <GroupActionbar errors={errors} setErrors={setErrors} />
+      <Errors errors={errors} setErrors={setErrors} />
+      <PeopleList />
     </div>
   );
 };

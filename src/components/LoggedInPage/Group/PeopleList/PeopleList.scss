@@ -1,0 +1,23 @@
+ul.people-list {
+  padding-inline-start: none !important;
+  .person {
+    display: grid;
+    grid-template-columns: 2fr 1.75fr 0.5fr;
+    list-style: none;
+    align-items: center;
+    padding: 0 5%;
+    height: 60px;
+    background-color: lighten(rgb(28, 32, 34), 1%);
+
+    &:nth-child(odd) {
+      background-color: lighten(rgb(28, 32, 34), 3%);
+    }
+
+    button {
+      text-align: right;
+    }
+    .x {
+      color: rgb(204, 204, 204);
+    }
+  }
+}

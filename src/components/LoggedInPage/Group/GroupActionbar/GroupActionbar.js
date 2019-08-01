@@ -30,7 +30,7 @@ const GroupActionbar = props => {
         id="navbarSupportedContent"
         style={{ maxWidth: "500px" }}
       >
-        <AddPerson />
+        <AddPerson errors={props.errors} setErrors={props.setErrors} />
       </div>
     </nav>
   );

@@ -32,10 +32,14 @@
 
     @media (max-width: 990px) {
       flex-direction: column;
-      padding: 0.5rem 0 0.5rem 2rem;
       .names {
         width: 100%;
       }
     }
+  }
+
+  .btn-outline-info {
+    color: rgb(0, 195, 255);
+    border-color: rgb(0, 195, 255);
   }
 }
