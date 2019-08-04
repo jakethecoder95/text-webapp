@@ -65,17 +65,15 @@ const AddPerson = props => {
               onChange={e => setLastName(e.target.value)}
             />
           </div>
-          <div>
-            {props.errors.number && screenWidth < 990 && (
-              <div style={{ color: "red" }}>* {props.errors.number}</div>
-            )}
-            <input
-              className="phone-number__input form-control"
-              placeholder="Phone Number"
-              value={number}
-              onChange={onNumberChange}
-            />
-          </div>
+          {props.errors.number && screenWidth < 990 && (
+            <div style={{ color: "red" }}>* {props.errors.number}</div>
+          )}
+          <input
+            className="phone-number__input form-control"
+            placeholder="Phone Number"
+            value={number}
+            onChange={onNumberChange}
+          />
           <button className="btn btn-outline-info" disabled={!isValid}>
             Add
           </button>
