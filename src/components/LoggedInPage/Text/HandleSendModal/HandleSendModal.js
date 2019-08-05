@@ -49,6 +49,7 @@ const HandleSendModal = props => {
   const handleClose = () => {
     setPassword("");
     setMessageWasSuccessfull(null);
+    setErrors({});
     props.handleFirstSendBtnClicked(false);
   };
 

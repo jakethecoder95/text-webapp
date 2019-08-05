@@ -7,12 +7,18 @@ import PeopleList from "./PeopleList/PeopleList";
 
 const Group = props => {
   const [errors, setErrors] = useState({});
+  const [searchString, setSearchString] = useState("");
 
   return (
     <div className="group-page page-content">
-      <GroupActionbar errors={errors} setErrors={setErrors} />
+      <GroupActionbar
+        errors={errors}
+        setErrors={setErrors}
+        searchString={searchString}
+        onSearchStringChange={setSearchString}
+      />
       <Errors errors={errors} setErrors={setErrors} />
-      <PeopleList />
+      <PeopleList searchString={searchString} />
     </div>
   );
 };

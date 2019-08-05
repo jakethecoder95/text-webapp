@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import _ from "lodash";
 import store from "store";
 
 import isPhoneNumber from "../../../../util/validatePhone";
 
 import server from "../../../../api/server";
+import { UPDATE_GROUP } from "../../../../redux/types";
 
 const AddPerson = props => {
   const [firstName, setFirstName] = useState("");
@@ -29,9 +31,12 @@ const AddPerson = props => {
       setFirstName("");
       setLastName("");
       setNumber("");
-      console.log(response);
+      props.updateGroup(response.data.group);
     } catch (err) {
-      console.log("error");
+      if (err.response.status === 401) {
+        props.setErrors({ number: err.response.data.message });
+      }
+      console.log(err.response);
     }
   };
 
@@ -83,4 +88,11 @@ const AddPerson = props => {
   );
 };
 
-export default AddPerson;
+const mapDispatchToProps = dispatch => ({
+  updateGroup: group => dispatch({ type: UPDATE_GROUP, payload: group })
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddPerson);

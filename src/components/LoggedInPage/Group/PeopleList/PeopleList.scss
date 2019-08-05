@@ -19,5 +19,9 @@ ul.people-list {
     .x {
       color: rgb(204, 204, 204);
     }
+    .close {
+      cursor: pointer;
+      text-align: right;
+    }
   }
 }
