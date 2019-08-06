@@ -6,16 +6,14 @@ import Alerts from "./Alerts/Alerts";
 import PeopleList from "./PeopleList/PeopleList";
 import Pagination from "./Pagination/Pagination";
 
+const pageListLength = window.innerWidth < 893 ? 30 : 15;
+
 const Group = props => {
   const [alerts, setAlerts] = useState({});
   const [searchString, setSearchString] = useState("");
   const [page, setPage] = useState(1);
 
   const peopleToBeRendered = props.people
-    // Sort Alphabetically
-    .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
-    // Pageination
-    .slice((page - 1) * 10, 10)
     // Filter out strings that don't match searchString
     .filter(person => {
       if (new RegExp(searchString, "gi").test(person.number)) {
@@ -25,7 +23,19 @@ const Group = props => {
         return true;
       }
       return false;
-    });
+    })
+    // Sort Alphabetically
+    .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
+    // Pageination
+    .slice(
+      (page - 1) * pageListLength,
+      (page - 1) * pageListLength + pageListLength
+    );
+
+  const onSearchStringChange = str => {
+    setPage(1);
+    setSearchString(str);
+  };
 
   return (
     <div className="group-page page-content">
@@ -33,16 +43,16 @@ const Group = props => {
         alerts={alerts}
         setAlerts={setAlerts}
         searchString={searchString}
-        onSearchStringChange={setSearchString}
+        onSearchStringChange={onSearchStringChange}
       />
-      <Alerts errors={alerts} setAlerts={setAlerts} />
-      <PeopleList searchString={searchString} page={page} />
+      <Alerts alerts={alerts} setAlerts={setAlerts} />
+      <PeopleList
+        searchString={searchString}
+        page={page}
+        people={peopleToBeRendered}
+      />
       {props.people.length > 10 && (
-        <Pagination
-          page={page}
-          onPageChange={setPage}
-          people={peopleToBeRendered}
-        />
+        <Pagination page={page} onPageChange={setPage} people={props.people} />
       )}
     </div>
   );

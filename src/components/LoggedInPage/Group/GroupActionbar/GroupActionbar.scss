@@ -2,6 +2,8 @@
   .navbar {
     margin-top: 1rem;
     justify-content: space-between;
+    max-width: 900px;
+    margin: 2rem auto;
   }
   .navbar.navbar-dark,
   .navbar.bg-dark {
