@@ -50,6 +50,7 @@ const Group = props => {
         searchString={searchString}
         page={page}
         people={peopleToBeRendered}
+        setAlerts={setAlerts}
       />
       {props.people.length > 10 && (
         <Pagination

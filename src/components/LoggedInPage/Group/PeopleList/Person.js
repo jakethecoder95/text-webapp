@@ -2,7 +2,7 @@ import React from "react";
 import server from "../../../../api/server";
 import store from "store";
 
-const Person = ({ person, updateGroup }) => {
+const Person = ({ person, updateGroup, setAlerts }) => {
   const deletePerson = async personId => {
     const token = store.get("token");
     const authString = `Bearer ${token}`;
@@ -14,6 +14,7 @@ const Person = ({ person, updateGroup }) => {
         }
       });
       updateGroup(response.data.group);
+      setAlerts({ success: "Deleted Successfully!" });
     } catch (err) {
       console.log(err.response);
     }

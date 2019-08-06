@@ -31,6 +31,7 @@ const AddPerson = props => {
       setFirstName("");
       setLastName("");
       setNumber("");
+      props.setAlerts({ success: "Person added successfully!" });
       props.updateGroup(response.data.group);
     } catch (err) {
       if (err.response.status === 401) {

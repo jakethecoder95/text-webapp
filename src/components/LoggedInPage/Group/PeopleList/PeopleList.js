@@ -5,14 +5,23 @@ import { connect } from "react-redux";
 import Person from "./Person";
 import { UPDATE_GROUP } from "../../../../redux/types";
 
-const PeopleList = ({ people, updateGroup }) => {
+const PeopleList = ({ people, updateGroup, setAlerts }) => {
   if (people.length === 0) {
-    return <div>No people</div>;
+    return (
+      <h1 className="text-center" style={{ marginBottom: "2rem" }}>
+        ...No people found
+      </h1>
+    );
   }
 
   const peopleList = people.map(person => {
     return (
-      <Person person={person} key={person._id} updateGroup={updateGroup} />
+      <Person
+        person={person}
+        key={person._id}
+        updateGroup={updateGroup}
+        setAlerts={setAlerts}
+      />
     );
   });
 
