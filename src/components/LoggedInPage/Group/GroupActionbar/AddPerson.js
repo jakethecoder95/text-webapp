@@ -16,9 +16,9 @@ const AddPerson = props => {
   const onSubmit = async e => {
     e.preventDefault();
     if (!isPhoneNumber(number)) {
-      return props.setErrors({ number: "Phone number invalid" });
+      return props.setAlerts({ number: "Phone number invalid" });
     }
-    props.setErrors(_.omit(props.errors, "number"));
+    props.setAlerts(_.omit(props.alerts, "number"));
     const token = store.get("token");
     const authString = `Bearer ${token}`;
     const name = `${firstName} ${lastName}`;
@@ -34,7 +34,7 @@ const AddPerson = props => {
       props.updateGroup(response.data.group);
     } catch (err) {
       if (err.response.status === 401) {
-        props.setErrors({ number: err.response.data.message });
+        props.setAlerts({ number: err.response.data.message });
       }
       console.log(err.response);
     }
@@ -45,8 +45,8 @@ const AddPerson = props => {
     number.length > 0 && lastName.length > 0 && firstName.length > 0;
 
   const onNumberChange = e => {
-    if (props.errors.number) {
-      props.setErrors(_.omit(props.errors, "number"));
+    if (props.alerts.number) {
+      props.setAlerts(_.omit(props.alerts, "number"));
     }
     setNumber(e.target.value);
   };
@@ -70,8 +70,8 @@ const AddPerson = props => {
               onChange={e => setLastName(e.target.value)}
             />
           </div>
-          {props.errors.number && screenWidth < 990 && (
-            <div style={{ color: "red" }}>* {props.errors.number}</div>
+          {props.alerts.number && screenWidth < 990 && (
+            <div style={{ color: "red" }}>* {props.alerts.number}</div>
           )}
           <input
             className="phone-number__input form-control"

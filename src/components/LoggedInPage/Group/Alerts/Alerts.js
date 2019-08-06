@@ -1,7 +1,7 @@
 import React from "react";
 import _ from "lodash";
 
-const Errors = props => {
+const Alerts = props => {
   const screenWidth = window.innerWidth;
 
   const style = {
@@ -10,19 +10,19 @@ const Errors = props => {
   };
 
   const renderNumberErrors = () => {
-    if (props.errors.number && screenWidth >= 990) {
+    if (props.alerts.number && screenWidth >= 990) {
       return (
         <div
           className="alert alert-danger alert-dismissible fade show"
           role="alert"
         >
-          <strong>{props.errors.number}</strong>
+          <strong>{props.alets.number}</strong>
           <button
             type="button"
             className="close"
             data-dismiss="alert"
             aria-label="Close"
-            onClick={() => props.setErrors(_.omit(props.errors, "number"))}
+            onClick={() => props.setAlerts(_.omit(props.errors, "number"))}
           >
             <span aria-hidden="true">&times;</span>
           </button>
@@ -34,4 +34,4 @@ const Errors = props => {
   return <div style={style}>{renderNumberErrors()}</div>;
 };
 
-export default Errors;
+export default Alerts;
