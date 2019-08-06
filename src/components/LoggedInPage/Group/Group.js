@@ -6,7 +6,7 @@ import Alerts from "./Alerts/Alerts";
 import PeopleList from "./PeopleList/PeopleList";
 import Pagination from "./Pagination/Pagination";
 
-const pageListLength = window.innerWidth < 893 ? 30 : 15;
+const pageListLength = 15;
 
 const Group = props => {
   const [alerts, setAlerts] = useState({});
@@ -52,7 +52,12 @@ const Group = props => {
         people={peopleToBeRendered}
       />
       {props.people.length > 10 && (
-        <Pagination page={page} onPageChange={setPage} people={props.people} />
+        <Pagination
+          page={page}
+          onPageChange={setPage}
+          people={props.people}
+          maxLength={pageListLength}
+        />
       )}
     </div>
   );
