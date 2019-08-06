@@ -9,7 +9,7 @@ const GroupActionbar = props => {
       <form className="form-inline my-2 my-lg-0">
         <input
           className="form-control mr-sm-2"
-          onChange={e => props.onSearchStringChange(e.target.value.trim())}
+          onChange={e => props.onSearchStringChange(e.target.value)}
           type="search"
           placeholder="Search for a person"
           aria-label="Search"
