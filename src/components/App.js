@@ -5,6 +5,7 @@ import { INIT_APP } from "../redux/types";
 
 import LoggedInPage from "./LoggedInPage/LoggedInPage";
 import StarterPage from "./StarterPage/StarterPage";
+import Loading from "./Loading/Loading";
 
 class App extends React.Component {
   componentDidMount() {
@@ -12,7 +13,10 @@ class App extends React.Component {
   }
 
   renderPage = () => {
-    if (!this.props.isSignedIn) {
+    if (this.props.isSignedIn === null) {
+      return <Loading />;
+    }
+    if (this.props.isSignedIn === false) {
       return <StarterPage />;
     }
     return <LoggedInPage />;
