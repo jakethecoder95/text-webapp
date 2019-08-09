@@ -29,7 +29,9 @@ const PersonalInfo = props => {
     } catch (err) {
       if (err.response) {
         setAlerts({ success: null, error: err.response.data.message });
-        setAsyncError(err.response.data);
+        err.response.data.data
+          ? setAsyncError(err.response.data.data)
+          : setAsyncError(err.response.data);
       }
       console.log(err.response);
     }
@@ -39,7 +41,15 @@ const PersonalInfo = props => {
   const validate = values => {
     const errors = {};
 
-    if (asyncError) {
+    // Express validator errors
+    if (Array.isArray(asyncError)) {
+      asyncError.forEach(err => {
+        if (values[err.param] === err.value) {
+          errors[err.param] = err.msg;
+        }
+      });
+    } else {
+      // Non-express validator errors
       if (values[asyncError.type] === asyncError.value) {
         errors[asyncError.type] = asyncError.message;
       }
