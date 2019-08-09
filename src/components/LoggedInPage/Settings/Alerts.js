@@ -1,6 +1,7 @@
 import React from "react";
 
 export default props => {
+  console.log(props);
   if (props.error) {
     return (
       <div

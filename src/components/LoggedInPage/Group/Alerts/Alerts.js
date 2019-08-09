@@ -16,7 +16,7 @@ const Alerts = props => {
           className="alert alert-danger alert-dismissible fade show"
           role="alert"
         >
-          <strong>{props.alets.number}</strong>
+          <strong>{props.alerts.number}</strong>
           <button
             type="button"
             className="close"

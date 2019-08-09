@@ -90,11 +90,13 @@ const PersonalInfo = props => {
       onSubmit={onSubmit}
       validate={validate}
       initialValues={{ name: props.group.name, email: props.group.email }}
-      render={({ handleSubmit, pristine, invalid, form }) => (
+      render={({ handleSubmit, pristine, invalid, values }) => (
         <form onSubmit={handleSubmit} className="settings__form">
           <h2 className="text-center">Your Personal Info</h2>
           <hr className="hr" />
+
           <Alerts setAlerts={setAlerts} {...alerts} />
+
           <Field name="email" label="Email" component={FormField} />
           <Field name="name" label="Name" component={FormField} />
 
@@ -106,12 +108,14 @@ const PersonalInfo = props => {
             component={FormField}
           />
           <Field
+            disabled={!values.oldPassword}
             name="newPassword"
             label="New Password"
             type="password"
             component={FormField}
           />
           <Field
+            disabled={!values.oldPassword}
             name="confirmPassword"
             label="Confirm Password"
             type="password"
