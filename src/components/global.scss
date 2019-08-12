@@ -7,6 +7,11 @@ body {
   border-radius: 50%;
 }
 
+.btn-primary {
+  background-color: rgba(0, 195, 255, 0.75) !important;
+  color: white;
+}
+
 .logo {
   text-align: center;
   font-weight: bold;
@@ -46,6 +51,7 @@ body {
 
 .page-content {
   animation: fadeIn 500ms ease-in;
+  min-height: 90vh;
 }
 
 .hr {

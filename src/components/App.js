@@ -6,6 +6,7 @@ import { INIT_APP } from "../redux/types";
 import LoggedInPage from "./LoggedInPage/LoggedInPage";
 import StarterPage from "./StarterPage/StarterPage";
 import Loading from "./Loading/Loading";
+import Footer from "./Footer/Footer";
 
 class App extends React.Component {
   componentDidMount() {
@@ -24,12 +25,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <div className="logo">
           Group<span>Text</span>
         </div>
         <main className="container">{this.renderPage()}</main>
-      </div>
+        <Footer />
+      </>
     );
   }
 }

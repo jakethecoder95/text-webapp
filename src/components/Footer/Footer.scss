@@ -1,0 +1,52 @@
+.navbar {
+  background-color: rgba(0, 195, 255, 0.75);
+}
+.page-footer {
+  color: white;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+
+  ul {
+    flex-direction: row;
+    li {
+      margin-right: 10px;
+    }
+  }
+  a {
+    color: white;
+  }
+  button {
+    float: right;
+  }
+
+  @media (max-width: 840px) {
+    padding: 2rem;
+    grid-template-areas:
+      "button button button"
+      "nav nav nav"
+      "copyright copyright copyright";
+
+    ul {
+      justify-content: center;
+      grid-area: nav;
+      margin: auto;
+      height: 50px;
+    }
+    .footer-btn {
+      grid-area: button;
+      text-align: center;
+      height: 50px;
+      button {
+        width: 200px;
+        transition: translateX(50%);
+        float: none;
+      }
+    }
+    .footer-copyright {
+      grid-area: copyright;
+      padding: 0 !important;
+      line-height: 2;
+      height: 50px;
+    }
+  }
+}
