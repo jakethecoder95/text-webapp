@@ -90,6 +90,7 @@ const NexmoInfo = props => {
             label="Secret Key"
             type="password"
             component={FormField}
+            toggleablePswField
           />
           <button
             type="submit"
