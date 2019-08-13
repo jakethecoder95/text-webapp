@@ -6,6 +6,7 @@ import MessageInput from "./MessageInput/MessageInput";
 import CharacterCnt from "./CharacterCnt/CharacterCnt";
 import SendTextBtn from "./SendTextBtn/SendTextBtn";
 import HandleSendModal from "./HandleSendModal/HandleSendModal";
+import MessageDefaultsInput from "./MessageDefaultsInput/MessageDefaultsInput";
 
 const initialState = { message: "" };
 
@@ -13,6 +14,14 @@ const Text = props => {
   const [message, setMessage] = useState(initialState.message);
   const [maxTextCharLength] = useState(160);
   const [firstSendBtnClicked, setFirstSendBtnClicked] = useState(false);
+  const [preMessageStr, setPreMessageStr] = useState(
+    `${props.groupName} GroupText:`
+  );
+  const [postMessageStr, setPostMessageStr] = useState(
+    "[No Reply. Text 2 to exit Group]"
+  );
+
+  const finalMessage = `${preMessageStr}\n${message}\n${postMessageStr}`;
 
   useEffect(() => {
     return function cleanup() {
@@ -43,13 +52,23 @@ const Text = props => {
     <>
       <div className="page-content">
         <div className={"logged-in-page__content"}>
+          <MessageDefaultsInput
+            value={preMessageStr}
+            onValueChange={setPreMessageStr}
+          />
           <MessageInput
             message={message}
             onMessageChange={msg => setMessage(msg)}
           />
+          <MessageDefaultsInput
+            value={postMessageStr}
+            onValueChange={setPostMessageStr}
+          />
           <div className="text-under">
             <CharacterCnt
-              message={message}
+              preMessageStr={preMessageStr}
+              postMessageStr={postMessageStr}
+              message={finalMessage}
               maxTextCharLength={maxTextCharLength}
             />
             <SendTextBtn
@@ -62,7 +81,7 @@ const Text = props => {
       <HandleSendModal
         show={firstSendBtnClicked}
         handleFirstSendBtnClicked={setFirstSendBtnClicked}
-        message={message}
+        message={finalMessage}
         clearMessage={() => setMessage("")}
       />
     </>
@@ -70,7 +89,8 @@ const Text = props => {
 };
 
 const mapStateToProps = ({ group }) => ({
-  people: group.people
+  people: group.people,
+  groupName: group.name
 });
 
 export default connect(mapStateToProps)(Text);

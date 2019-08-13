@@ -1,0 +1,17 @@
+.message-defaults {
+  input {
+    width: 100%;
+    font-size: 1.5em;
+    background: inherit;
+    border: none;
+    color: rgba(204, 204, 204, 0.75);
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &:nth-child(1) {
+    padding-bottom: 0.5em;
+  }
+}
