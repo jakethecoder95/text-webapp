@@ -17,7 +17,7 @@ const Footer = props => {
               className="nav-link"
               href="https://github.com/jakethecoder95/text-webapp/issues"
             >
-              Issues
+              Report Issue
             </a>
           </li>
           <li className="nav-item active">
