@@ -1,0 +1,22 @@
+.error-list {
+  .fa-angle-down {
+    float: right;
+    font-size: 1.25em;
+  }
+
+  .error {
+    display: flex;
+  }
+
+  .error-hr {
+    border: 0;
+    height: 1px;
+    margin: 1.5rem 0;
+    background-image: linear-gradient(
+      to right,
+      rgba(114, 27, 36, 0),
+      rgba(114, 27, 36, 0.7),
+      rgba(114, 27, 36, 0)
+    );
+  }
+}

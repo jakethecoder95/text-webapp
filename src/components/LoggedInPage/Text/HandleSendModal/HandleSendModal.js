@@ -4,7 +4,7 @@ import store from "store";
 import { connect } from "react-redux";
 
 import Overview from "./Overview";
-import MessageResult from "./MessageResult";
+import MessageResult from "./MessageResult/MessageResult";
 import server from "../../../../api/server";
 
 const HandleSendModal = props => {
@@ -18,7 +18,7 @@ const HandleSendModal = props => {
     const token = store.get("token");
     const authString = `Bearer ${token}`;
     try {
-      await server.post(
+      const response = await server.post(
         "/send-text",
         {
           password,
@@ -27,19 +27,20 @@ const HandleSendModal = props => {
         },
         { headers: { Authorization: authString } }
       );
-      setMessageWasSuccessfull(true);
-      props.clearMessage();
-      setErrors({});
+      if (response.data.failedTxts.length > 0) {
+        console.log(response);
+        setErrors({
+          nexmo: response.data.failedTxts
+        });
+      } else {
+        setMessageWasSuccessfull(true);
+        props.clearMessage();
+        setErrors({});
+      }
     } catch (err) {
       setMessageWasSuccessfull(false);
       if (err.response.status === 401) {
         setErrors({ ...errors, password: "Incorrect password" });
-      }
-      if (err.response.status === 422) {
-        setErrors({
-          ...errors,
-          nexmo: err.response.data.message
-        });
       }
       console.log(err.response);
     }
@@ -72,6 +73,7 @@ const HandleSendModal = props => {
           errors={errors}
         />
         <MessageResult
+          people={props.group.people}
           sending={sending}
           messageWasSuccessfull={messageWasSuccessfull}
           errors={errors}
