@@ -28,7 +28,6 @@ const HandleSendModal = props => {
         { headers: { Authorization: authString } }
       );
       if (response.data.failedTxts.length > 0) {
-        console.log(response);
         setErrors({
           nexmo: response.data.failedTxts
         });
