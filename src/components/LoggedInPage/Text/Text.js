@@ -51,7 +51,7 @@ const Text = props => {
   return (
     <>
       <div className="page-content">
-        <div className={"logged-in-page__content"}>
+        <div className="text__content">
           <MessageDefaultsInput
             value={preMessageStr}
             onValueChange={setPreMessageStr}
