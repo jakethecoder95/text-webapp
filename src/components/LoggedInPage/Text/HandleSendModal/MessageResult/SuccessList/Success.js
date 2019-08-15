@@ -5,10 +5,10 @@ const Success = ({ name, number, message, index }) => {
     <li className="list-group-item list-group-item-success">
       <div
         data-toggle="collapse"
-        href={`#colapsableInner${index}`}
+        href={`#collapsibleSuccessInner${index}`}
         role="button"
         aria-expanded="false"
-        aria-controls={`colapsableInner${index}`}
+        aria-controls={`collapsibleSuccessInner${index}`}
         style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr" }}
       >
         <div className="success-name">{name}</div>
@@ -19,7 +19,7 @@ const Success = ({ name, number, message, index }) => {
       </div>
       <div
         className="collapse"
-        id={`colapsableInner${index}`}
+        id={`collapsibleSuccessInner${index}`}
         style={{ padding: "10px 20px 0 20px" }}
       >
         <div className="text-center">

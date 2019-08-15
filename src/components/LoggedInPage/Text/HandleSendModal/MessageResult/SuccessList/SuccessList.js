@@ -21,10 +21,10 @@ const SuccessList = ({ nexmoErrors, people }) => {
       <div
         className="success-row"
         data-toggle="collapse"
-        href="#colapsableOuter"
+        href="#collapsibleSuccessOuter"
         role="button"
         aria-expanded="false"
-        aria-controls="colapsableOuter"
+        aria-controls="collapsibleSuccessOuter"
       >
         <strong>
           {nexmoErrors.length === 0
@@ -33,7 +33,7 @@ const SuccessList = ({ nexmoErrors, people }) => {
           <i className="fa fa-angle-down" />
         </strong>
       </div>
-      <ul className="list-group collapse" id="colapsableOuter">
+      <ul className="list-group collapse" id="collapsibleSuccessOuter">
         <hr className="success-hr" />
         {list}
       </ul>

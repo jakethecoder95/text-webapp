@@ -19,17 +19,17 @@ const ErrorList = ({ nexmoErrors, people }) => {
       <div
         className="error-row"
         data-toggle="collapse"
-        href="#colapsableOuter"
+        href="#collapsibleErrorOuter"
         role="button"
         aria-expanded="false"
-        aria-controls="colapsableOuter"
+        aria-controls="collapsibleErrorOuter"
       >
         <strong>
           {nexmoErrors.length} out of {people.length} texts failed
           <i className="fa fa-angle-down" />
         </strong>
       </div>
-      <ul className="list-group collapse" id="colapsableOuter">
+      <ul className="list-group collapse" id="collapsibleErrorOuter">
         <hr className="error-hr" />
         {errorList}
       </ul>
