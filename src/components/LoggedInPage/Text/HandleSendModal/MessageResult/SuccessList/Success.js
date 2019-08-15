@@ -1,9 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
 
-const Error = ({ name, number, message, index }) => {
+const Success = ({ name, number, message, index }) => {
   return (
-    <li className="list-group-item list-group-item-danger">
+    <li className="list-group-item list-group-item-success">
       <div
         data-toggle="collapse"
         href={`#colapsableInner${index}`}
@@ -12,9 +11,9 @@ const Error = ({ name, number, message, index }) => {
         aria-controls={`colapsableInner${index}`}
         style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr" }}
       >
-        <div className="error-name">{name}</div>
-        <div className="error-name">{number}</div>
-        <div className="error-expand-icon">
+        <div className="success-name">{name}</div>
+        <div className="success-name">{number}</div>
+        <div className="success-expand-icon">
           <i className="fa fa-angle-down" />
         </div>
       </div>
@@ -24,17 +23,13 @@ const Error = ({ name, number, message, index }) => {
         style={{ padding: "10px 20px 0 20px" }}
       >
         <div className="text-center">
-          <i className="fa fa-times-circle" style={{ fontSize: "44px" }} />
+          <i className="fa fa-check-circle" style={{ fontSize: "44px" }} />
           <br />
-          <strong>{message}</strong>
+          Message sent successfully
         </div>
       </div>
     </li>
   );
 };
 
-const mapStateToProps = ({ group }) => ({
-  people: group.people
-});
-
-export default connect(mapStateToProps)(Error);
+export default Success;

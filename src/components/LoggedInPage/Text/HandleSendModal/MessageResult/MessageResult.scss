@@ -1,14 +1,17 @@
-.error-list {
+.error-list,
+.success-list {
   .fa-angle-down {
     float: right;
     font-size: 1.25em;
   }
 
+  .error,
   .error {
     display: flex;
   }
 
-  .error-hr {
+  .error-hr,
+  .success-hr {
     border: 0;
     height: 1px;
     margin: 1.5rem 0;
