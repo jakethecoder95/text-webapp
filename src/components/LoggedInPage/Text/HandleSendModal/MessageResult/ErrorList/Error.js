@@ -5,10 +5,10 @@ const Error = ({ name, number, message, index }) => {
     <li className="list-group-item list-group-item-danger">
       <div
         data-toggle="collapse"
-        href={`#colapsableInner${index}`}
+        href={`#collapsibleErrorInner${index}`}
         role="button"
         aria-expanded="false"
-        aria-controls={`colapsableInner${index}`}
+        aria-controls={`collapsibleErrorInner${index}`}
         style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr" }}
       >
         <div className="error-name">{name}</div>
@@ -19,7 +19,7 @@ const Error = ({ name, number, message, index }) => {
       </div>
       <div
         className="collapse"
-        id={`colapsableInner${index}`}
+        id={`collapsibleErrorInner${index}`}
         style={{ padding: "10px 20px 0 20px" }}
       >
         <div className="text-center">
