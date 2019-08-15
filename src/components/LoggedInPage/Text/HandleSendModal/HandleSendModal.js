@@ -32,10 +32,10 @@ const HandleSendModal = props => {
           nexmo: response.data.failedTxts
         });
       } else {
-        setMessageWasSuccessfull(true);
         props.clearMessage();
         setErrors({});
       }
+      setMessageWasSuccessfull(true);
     } catch (err) {
       setMessageWasSuccessfull(false);
       if (err.response.status === 401) {
