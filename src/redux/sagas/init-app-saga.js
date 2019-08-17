@@ -20,6 +20,7 @@ export default () =>
       alert(
         "Looks like there was an issue logging you back in.  Please log back in."
       );
+      yield put({ type: SIGN_OUT });
       console.log(err.response);
     }
   });
