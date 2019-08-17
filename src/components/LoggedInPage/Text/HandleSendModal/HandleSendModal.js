@@ -13,7 +13,7 @@ const HandleSendModal = props => {
   const [sending, setSending] = useState(false);
   const [messageWasSuccessfull, setMessageWasSuccessfull] = useState(null);
 
-  const sendTexts = async () => {
+  const sendTexts = async people => {
     setSending(true);
     const token = store.get("token");
     const authString = `Bearer ${token}`;
@@ -22,7 +22,7 @@ const HandleSendModal = props => {
         "/send-text",
         {
           password,
-          ...props.group,
+          ...people,
           message: props.message
         },
         { headers: { Authorization: authString } }
@@ -72,10 +72,10 @@ const HandleSendModal = props => {
           errors={errors}
         />
         <MessageResult
-          people={props.group.people}
           sending={sending}
           messageWasSuccessfull={messageWasSuccessfull}
           errors={errors}
+          resendTexts={sendTexts}
         />
       </Modal.Body>
       <Modal.Footer>
@@ -87,7 +87,7 @@ const HandleSendModal = props => {
             <button
               className="btn btn-primary"
               disabled={password.length === 0 || sending}
-              onClick={sendTexts}
+              onClick={() => sendTexts(props.group)}
               style={{ width: "100%", marginBottom: "5px" }}
             >
               Send It!

@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 
 import Error from "./Error";
 
-const ErrorList = ({ nexmoErrors, people }) => {
+const ErrorList = ({ nexmoErrors, group, resendTexts }) => {
+  const { people } = group;
   const errorList = nexmoErrors.map((err, i) => (
     <Error
       name={err.name}
@@ -33,12 +34,20 @@ const ErrorList = ({ nexmoErrors, people }) => {
         <hr className="error-hr" />
         {errorList}
       </ul>
+      <div className="text-center" style={{ marginTop: "1rem" }}>
+        <button
+          className="btn btn-danger"
+          onClick={() => resendTexts({ ...group, people: nexmoErrors })}
+        >
+          Resend Failed Texts
+        </button>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = ({ group }) => ({
-  people: group.people
+  group
 });
 
 export default connect(mapStateToProps)(ErrorList);

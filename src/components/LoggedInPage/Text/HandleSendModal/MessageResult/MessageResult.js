@@ -4,7 +4,12 @@ import React from "react";
 import ErrorList from "./ErrorList/ErrorList";
 import SuccessList from "./SuccessList/SuccessList";
 
-const MessageResult = ({ sending, messageWasSuccessfull, errors, people }) => {
+const MessageResult = ({
+  sending,
+  messageWasSuccessfull,
+  errors,
+  resendTexts
+}) => {
   if (sending) {
     return (
       <div className="text-center">
@@ -24,7 +29,9 @@ const MessageResult = ({ sending, messageWasSuccessfull, errors, people }) => {
       {messageWasSuccessfull && (
         <SuccessList nexmoErrors={errors.nexmo || []} />
       )}
-      {errors.nexmo && <ErrorList nexmoErrors={errors.nexmo} />}
+      {errors.nexmo && (
+        <ErrorList resendTexts={resendTexts} nexmoErrors={errors.nexmo} />
+      )}
     </>
   );
 };
