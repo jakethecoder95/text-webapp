@@ -15,7 +15,8 @@ const Pagination = ({ page, onPageChange, people, maxLength }) => {
     ) : null;
 
   const firstPageLink = () => {
-    const num = page === 1 ? page : isLastPage ? page - 2 : page - 1;
+    const num =
+      page === 1 ? page : isLastPage && page > 2 ? page - 2 : page - 1;
     return (
       <li
         className={`page-item ${page === 1 ? "active" : ""}`}
@@ -31,7 +32,8 @@ const Pagination = ({ page, onPageChange, people, maxLength }) => {
   };
 
   const secondPageLink = () => {
-    const num = page === 1 ? page + 1 : isLastPage ? page - 1 : page;
+    const num =
+      page === 1 ? page + 1 : isLastPage && page > 2 ? page - 1 : page;
     return (
       <li
         className={`page-item ${num === page ? "active" : ""}`}

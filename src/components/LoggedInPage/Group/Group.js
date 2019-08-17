@@ -52,7 +52,7 @@ const Group = props => {
         people={peopleToBeRendered}
         setAlerts={setAlerts}
       />
-      {props.people.length > 10 && (
+      {props.people.length > pageListLength && (
         <Pagination
           page={page}
           onPageChange={setPage}
