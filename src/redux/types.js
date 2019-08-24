@@ -1,3 +1,4 @@
+export const CLEAR_AUTH_ERRORS = "CLEAR_AUTH_ERRORS";
 export const ERROR_LOGIN = "ERROR_LOGIN";
 export const ERROR_SIGNUP = "ERROR_SIGNUP";
 export const INIT_APP = "INIT_APP";

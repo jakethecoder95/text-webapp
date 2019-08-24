@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Field } from "react-final-form";
 import { connect } from "react-redux";
 
@@ -8,7 +8,9 @@ import isPhoneNumber from "../../../util/validatePhone";
 import { SIGN_UP } from "../../../redux/types";
 
 const SignupForm = props => {
+  const [signingUp, setSigningUp] = useState(false);
   const onSubmit = userInfo => {
+    setSigningUp(true);
     props.signup(userInfo);
   };
   const validate = values => {
@@ -16,6 +18,7 @@ const SignupForm = props => {
     const asyncErrors = props.asyncErrors;
 
     if (asyncErrors) {
+      setSigningUp(false);
       asyncErrors.data.forEach(err => {
         if (values[err.param] === err.value) {
           errors[err.param] = err.msg;
@@ -51,46 +54,68 @@ const SignupForm = props => {
     return errors;
   };
 
+  const signingUpLoader = (
+    <div className="signing-up__loader">
+      <div
+        className="spinner-border"
+        style={{
+          width: "5rem",
+          height: "5rem"
+        }}
+        role="status"
+      >
+        <span className="sr-only">Loading...</span>
+      </div>
+      <p>Signing you up..</p>
+    </div>
+  );
+
   return (
-    <Form
-      onSubmit={onSubmit}
-      validate={validate}
-      render={({ handleSubmit, pristine, invalid }) => (
-        <form onSubmit={handleSubmit}>
-          <h2 className="text-center">Your Personal Info</h2>
-          <hr className="hr" />
-          <Field name="email" label="Email" component={FormField} />
-          <Field name="name" label="Name" component={FormField} />
-          <Field
-            name="password"
-            label="Password"
-            type="password"
-            component={FormField}
-          />
-          <h2 className="text-center">Your Nexmo Info</h2>
-          <hr className="hr" />
-          <Field
-            name="nexmoNumber"
-            label="Nexmo Number"
-            component={FormField}
-          />
-          <Field name="apiKey" label="API Key" component={FormField} />
-          <Field
-            name="secretKey"
-            label="Secret Key"
-            type="password"
-            component={FormField}
-          />
-          <button
-            type="submit"
-            className="btn btn-primary"
-            disabled={pristine || invalid}
+    <>
+      {signingUp && !props.asyncErrors ? signingUpLoader : <></>}
+      <Form
+        onSubmit={onSubmit}
+        validate={validate}
+        render={({ handleSubmit, pristine, invalid }) => (
+          <form
+            onSubmit={handleSubmit}
+            style={signingUp ? { display: "none" } : {}}
           >
-            Signup
-          </button>
-        </form>
-      )}
-    />
+            <h2 className="text-center">Your Personal Info</h2>
+            <hr className="hr" />
+            <Field name="email" label="Email" component={FormField} />
+            <Field name="name" label="Name" component={FormField} />
+            <Field
+              name="password"
+              label="Password"
+              type="password"
+              component={FormField}
+            />
+            <h2 className="text-center">Your Nexmo Info</h2>
+            <hr className="hr" />
+            <Field
+              name="nexmoNumber"
+              label="Nexmo Number"
+              component={FormField}
+            />
+            <Field name="apiKey" label="API Key" component={FormField} />
+            <Field
+              name="secretKey"
+              label="Secret Key"
+              type="password"
+              component={FormField}
+            />
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={pristine || invalid}
+            >
+              Signup
+            </button>
+          </form>
+        )}
+      />
+    </>
   );
 };
 

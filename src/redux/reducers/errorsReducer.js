@@ -1,4 +1,4 @@
-import { ERROR_LOGIN, ERROR_SIGNUP, SIGN_IN_SUCCESS } from "../types";
+import { ERROR_LOGIN, ERROR_SIGNUP, CLEAR_AUTH_ERRORS } from "../types";
 
 const INITIAL_STATE = {
   signin: null,
@@ -11,7 +11,7 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, signin: { ...action.payload } };
     case ERROR_SIGNUP:
       return { ...state, signup: { ...action.payload } };
-    case SIGN_IN_SUCCESS:
+    case CLEAR_AUTH_ERRORS:
       return { ...state, signin: null, signup: null };
     default:
       return state;

@@ -7,12 +7,14 @@ import {
   SIGN_IN,
   SIGN_OUT,
   SIGN_IN_SUCCESS,
-  SIGN_UP
+  SIGN_UP,
+  CLEAR_AUTH_ERRORS
 } from "../types";
 import server from "../../api/server";
 
 function* signin({ payload }) {
   const { email, password } = payload;
+  yield put({ type: CLEAR_AUTH_ERRORS });
   try {
     const response = yield server.post("/auth/login", { email, password });
     store.set("token", response.data.token);
@@ -27,6 +29,7 @@ function* signin({ payload }) {
 }
 
 function* signup({ payload }) {
+  yield put({ type: CLEAR_AUTH_ERRORS });
   try {
     const response = yield server.put("/auth/signup", { ...payload });
     store.set("token", response.data.token);

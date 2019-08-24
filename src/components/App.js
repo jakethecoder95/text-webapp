@@ -1,5 +1,6 @@
 import "./global.scss";
 import React from "react";
+import { Router, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { INIT_APP } from "../redux/types";
 
@@ -7,6 +8,8 @@ import LoggedInPage from "./LoggedInPage/LoggedInPage";
 import StarterPage from "./StarterPage/StarterPage";
 import Loading from "./Loading/Loading";
 import Footer from "./Footer/Footer";
+import Admin from "./Admin/Admin";
+import history from "../history";
 
 class App extends React.Component {
   componentDidMount() {
@@ -25,13 +28,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
+      <Router history={history}>
         <div className="logo">
           Group<span>Text</span>
         </div>
-        <main className="container">{this.renderPage()}</main>
+        <Switch>
+          <Route path="/admin" component={Admin} />
+          <Route path="/">
+            <main className="container">{this.renderPage()}</main>
+          </Route>
+        </Switch>
         <Footer />
-      </>
+      </Router>
     );
   }
 }
