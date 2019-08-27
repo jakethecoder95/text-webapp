@@ -9,14 +9,16 @@ import { SIGN_UP } from "../../../redux/types";
 
 const SignupForm = props => {
   const [signingUp, setSigningUp] = useState(false);
+
   const onSubmit = userInfo => {
     setSigningUp(true);
     props.signup(userInfo);
   };
+
   const validate = values => {
     const errors = {};
+    // Handle Asyncronous errors
     const asyncErrors = props.asyncErrors;
-
     if (asyncErrors) {
       setSigningUp(false);
       asyncErrors.data.forEach(err => {
@@ -25,7 +27,7 @@ const SignupForm = props => {
         }
       });
     }
-
+    // Handle normal Errors
     if (!values.name) {
       errors.name = "Required";
     }
@@ -34,10 +36,10 @@ const SignupForm = props => {
     } else if (!isEmail(values.email.trim())) {
       errors.email = "Invalid email";
     }
-    if (!values.number) {
-      errors.number = "Required";
-    } else if (!isPhoneNumber(values.number)) {
-      errors.number = "Not a valid phone number.";
+    if (!values.phoneNumber) {
+      errors.phoneNumber = "Required";
+    } else if (!isPhoneNumber(values.phoneNumber)) {
+      errors.phoneNumber = "Not a valid phone number.";
     }
     if (!values.password) {
       errors.password = "Required";
@@ -49,7 +51,6 @@ const SignupForm = props => {
     } else if (values.confirmPassword !== values.password) {
       errors.confirmPassword = "Doesn't match password";
     }
-
     return errors;
   };
 
@@ -85,7 +86,7 @@ const SignupForm = props => {
             <Field name="name" label="Name" component={FormField} />
             <Field name="email" label="Email" component={FormField} />
             <Field
-              name="number"
+              name="phoneNumber"
               type="number"
               label="Phone Number"
               component={FormField}
