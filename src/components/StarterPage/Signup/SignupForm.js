@@ -39,16 +39,10 @@ const SignupForm = props => {
     } else if (values.password.length < 6) {
       errors.password = "Must be longer than 5 characters";
     }
-    if (!values.nexmoNumber) {
-      errors.nexmoNumber = "Required";
-    } else if (!isPhoneNumber(values.nexmoNumber.trim())) {
-      errors.nexmoNumber = "Invalid phone number";
-    }
-    if (!values.apiKey) {
-      errors.apiKey = "Required";
-    }
-    if (!values.secretKey) {
-      errors.secretKey = "Required";
+    if (!values.confirmPassword) {
+      errors.confirmPassword = "Required";
+    } else if (values.confirmPassword !== values.password) {
+      errors.confirmPassword = "Doesn't match password";
     }
 
     return errors;
@@ -81,29 +75,28 @@ const SignupForm = props => {
             onSubmit={handleSubmit}
             style={signingUp ? { display: "none" } : {}}
           >
-            <h2 className="text-center">Your Personal Info</h2>
+            <h2 className="text-center">Signup</h2>
             <hr className="hr" />
             <Field name="email" label="Email" component={FormField} />
             <Field name="name" label="Name" component={FormField} />
+            <Field
+              name="phoneNumber"
+              label="Phone Number"
+              component={FormField}
+            />
             <Field
               name="password"
               label="Password"
               type="password"
               component={FormField}
+              toggleablePswField
             />
-            <h2 className="text-center">Your Nexmo Info</h2>
-            <hr className="hr" />
             <Field
-              name="nexmoNumber"
-              label="Nexmo Number"
-              component={FormField}
-            />
-            <Field name="apiKey" label="API Key" component={FormField} />
-            <Field
-              name="secretKey"
-              label="Secret Key"
+              name="confirmPassword"
+              label="Confirm Password"
               type="password"
               component={FormField}
+              toggleablePswField
             />
             <button
               type="submit"

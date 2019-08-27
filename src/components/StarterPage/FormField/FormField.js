@@ -1,3 +1,4 @@
+import "./FormField.scss";
 import React from "react";
 
 const FormField = ({
@@ -30,8 +31,10 @@ const FormField = ({
           const input = e.target.parentElement.children[1];
           if (input.type === "password") {
             input.type = "text";
+            e.target.classList.toggle("fa-eye-slash");
           } else {
             input.type = "password";
+            e.target.classList.toggle("fa-eye-slash");
           }
         }}
       />

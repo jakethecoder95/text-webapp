@@ -58,12 +58,15 @@ const Login = props => {
             className="starter-page__form"
             style={loggingIn ? { display: "none" } : {}}
           >
+            <h2 className="text-center">Login</h2>
+            <hr className="hr" />
             <Field name="email" label="Email" component={FormField} />
             <Field
               name="password"
               label="Password"
               type="password"
               component={FormField}
+              toggleablePswField
             />
             <button
               type="submit"

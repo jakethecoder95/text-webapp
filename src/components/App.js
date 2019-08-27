@@ -33,7 +33,11 @@ class App extends React.Component {
         <Router history={history}>
           {this.props.isSignedIn ? <Nav /> : null}
           <div className="content">
-            <div className="logo">
+            <div
+              className={`logo ${
+                this.props.isSignedIn ? "logo__signed-in" : ""
+              }`}
+            >
               Group<span>Text</span>
             </div>
             <Switch>
