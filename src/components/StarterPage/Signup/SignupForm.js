@@ -26,13 +26,18 @@ const SignupForm = props => {
       });
     }
 
+    if (!values.name) {
+      errors.name = "Required";
+    }
     if (!values.email) {
       errors.email = "Required";
     } else if (!isEmail(values.email.trim())) {
       errors.email = "Invalid email";
     }
-    if (!values.name) {
-      errors.name = "Required";
+    if (!values.number) {
+      errors.number = "Required";
+    } else if (!isPhoneNumber(values.number)) {
+      errors.number = "Not a valid phone number.";
     }
     if (!values.password) {
       errors.password = "Required";
@@ -77,10 +82,11 @@ const SignupForm = props => {
           >
             <h2 className="text-center">Signup</h2>
             <hr className="hr" />
-            <Field name="email" label="Email" component={FormField} />
             <Field name="name" label="Name" component={FormField} />
+            <Field name="email" label="Email" component={FormField} />
             <Field
-              name="phoneNumber"
+              name="number"
+              type="number"
               label="Phone Number"
               component={FormField}
             />
