@@ -47,7 +47,7 @@ const Login = props => {
   );
 
   return (
-    <div className="page-content">
+    <div className="page-content container">
       {loggingIn && !props.asyncErrors ? loggingInLoader : <></>}
       <Form
         onSubmit={onSubmit}

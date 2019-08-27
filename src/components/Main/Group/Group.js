@@ -38,7 +38,7 @@ const Group = props => {
   };
 
   return (
-    <div className="group-page page-content">
+    <div className="group-page page-content container">
       <GroupActionbar
         alerts={alerts}
         setAlerts={setAlerts}

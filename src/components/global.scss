@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(28, 32, 34);
+  background-color: darken(rgb(28, 32, 34), 0.75%);
   color: rgb(204, 204, 204);
 }
 
@@ -19,6 +19,9 @@ body {
   span {
     color: rgb(0, 195, 255);
   }
+  @media (max-width: 500px) {
+    margin-left: 2rem;
+  }
 }
 
 .link {
@@ -35,6 +38,9 @@ body {
     transition: 250ms;
     padding: 10px 20px;
     cursor: pointer;
+    &:hover {
+      text-decoration: none;
+    }
   }
   @media (min-width: 700px) {
     font-size: 1em;
@@ -51,7 +57,7 @@ body {
 
 .page-content {
   animation: fadeIn 500ms ease-in;
-  min-height: 90vh;
+  min-height: 95vh;
 }
 
 .hr {

@@ -6,7 +6,7 @@ import NexmoInfo from "./NexmoInfo/NexmoInfo";
 
 const Settings = props => {
   return (
-    <div className="page-content">
+    <div className="page-content container">
       <div className="settings">
         <PersonalInfo />
         <NexmoInfo />

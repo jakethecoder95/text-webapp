@@ -50,7 +50,7 @@ const Text = props => {
 
   return (
     <>
-      <div className="page-content">
+      <div className="page-content container">
         <div className="text__content">
           <MessageDefaultsInput
             value={preMessageStr}

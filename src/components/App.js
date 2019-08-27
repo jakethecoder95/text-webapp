@@ -4,12 +4,13 @@ import { Router, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { INIT_APP } from "../redux/types";
 
-import LoggedInPage from "./LoggedInPage/LoggedInPage";
+import Main from "./Main/Main";
 import StarterPage from "./StarterPage/StarterPage";
 import Loading from "./Loading/Loading";
 import Footer from "./Footer/Footer";
 import Admin from "./Admin/Admin";
 import history from "../history";
+import Nav from "./Nav/Nav";
 
 class App extends React.Component {
   componentDidMount() {
@@ -23,23 +24,28 @@ class App extends React.Component {
     if (this.props.isSignedIn === false) {
       return <StarterPage />;
     }
-    return <LoggedInPage />;
+    return <Main />;
   };
 
   render() {
     return (
-      <Router history={history}>
-        <div className="logo">
-          Group<span>Text</span>
-        </div>
-        <Switch>
-          <Route path="/admin" component={Admin} />
-          <Route path="/">
-            <main className="container">{this.renderPage()}</main>
-          </Route>
-        </Switch>
-        <Footer />
-      </Router>
+      <div className="wrapper">
+        <Router history={history}>
+          {this.props.isSignedIn ? <Nav /> : null}
+          <div className="content">
+            <div className="logo">
+              Group<span>Text</span>
+            </div>
+            <Switch>
+              <Route path="/admin" component={Admin} />
+              <Route path="/">
+                <main>{this.renderPage()}</main>
+              </Route>
+            </Switch>
+            <Footer />
+          </div>
+        </Router>
+      </div>
     );
   }
 }
