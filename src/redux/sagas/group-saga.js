@@ -4,12 +4,13 @@ import store from "store";
 import { INIT_GROUP, SIGN_IN_SUCCESS } from "../types";
 
 function* initGroup({ payload }) {
-  const activeGroupId = store.get("activeGroupId");
-  let activeGroup = null;
+  let activeGroupId = store.get("activeGroupId"),
+    activeGroup = null;
   if (activeGroupId) {
     activeGroup = payload.groups.find(group => group._id === activeGroupId);
   } else if (payload.groups.length > 0) {
     activeGroup = payload.groups[0];
+    store.set("activeGroupId", activeGroup._id);
   }
   yield put({
     type: INIT_GROUP,

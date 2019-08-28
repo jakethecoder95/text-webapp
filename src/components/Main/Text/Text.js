@@ -1,6 +1,7 @@
 import "./Text.scss";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import MessageInput from "./MessageInput/MessageInput";
 import CharacterCnt from "./CharacterCnt/CharacterCnt";
@@ -11,17 +12,15 @@ import MessageDefaultsInput from "./MessageDefaultsInput/MessageDefaultsInput";
 const initialState = { message: "" };
 
 const Text = props => {
-  const [message, setMessage] = useState(initialState.message);
-  const [maxTextCharLength] = useState(160);
-  const [firstSendBtnClicked, setFirstSendBtnClicked] = useState(false);
-  const [preMessageStr, setPreMessageStr] = useState(
-    `${props.groupName} GroupText:`
-  );
-  const [postMessageStr, setPostMessageStr] = useState(
-    "[No Reply. Text 2 to exit Group]"
-  );
-
-  const finalMessage = `${preMessageStr}\n${message}\n${postMessageStr}`;
+  const { people, groupName } = props.group,
+    [message, setMessage] = useState(initialState.message),
+    [maxTextCharLength] = useState(160),
+    [firstSendBtnClicked, setFirstSendBtnClicked] = useState(false),
+    [preMessageStr, setPreMessageStr] = useState(`${groupName} GroupText:`),
+    [postMessageStr, setPostMessageStr] = useState(
+      "[No Reply. Text 2 to exit Group]"
+    ),
+    finalMessage = `${preMessageStr}\n${message}\n${postMessageStr}`;
 
   useEffect(() => {
     return function cleanup() {
@@ -29,7 +28,7 @@ const Text = props => {
     };
   });
 
-  if (props.people.length === 0) {
+  if (people.length === 0) {
     return (
       <div className="page-content text-center">
         <div className="no-people">
@@ -37,12 +36,9 @@ const Text = props => {
           <h1>
             <i className="fa fa-plus" />
           </h1>
-          <button
-            className="btn btn-primary"
-            onClick={() => props.setActive("group")}
-          >
+          <Link className="btn btn-primary" to="/group">
             Add Someone
-          </button>
+          </Link>
         </div>
       </div>
     );
@@ -89,8 +85,7 @@ const Text = props => {
 };
 
 const mapStateToProps = ({ group }) => ({
-  people: group.people,
-  groupName: group.name
+  group: group.activeGroup
 });
 
 export default connect(mapStateToProps)(Text);

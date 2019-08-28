@@ -47,7 +47,7 @@ const ErrorList = ({ nexmoErrors, group, resendTexts }) => {
 };
 
 const mapStateToProps = ({ group }) => ({
-  group
+  group: group.activeGroup
 });
 
 export default connect(mapStateToProps)(ErrorList);

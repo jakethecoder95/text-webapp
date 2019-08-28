@@ -12,7 +12,7 @@ export default () =>
     }
     const authString = `Bearer ${token}`;
     try {
-      const response = yield server.get("/auth/init-group", {
+      const response = yield server.get("/auth/init-user", {
         headers: { Authorization: authString }
       });
       yield put({ type: SIGN_IN_SUCCESS, payload: response.data });

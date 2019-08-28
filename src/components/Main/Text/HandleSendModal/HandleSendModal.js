@@ -108,7 +108,7 @@ const HandleSendModal = props => {
 };
 
 const mapStateToProps = ({ group }) => ({
-  group
+  group: group.activeGroup
 });
 
 export default connect(mapStateToProps)(HandleSendModal);

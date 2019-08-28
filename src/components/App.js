@@ -11,6 +11,7 @@ import Footer from "./Footer/Footer";
 import Admin from "./Admin/Admin";
 import history from "../history";
 import Nav from "./Nav/Nav";
+import NoGroupPage from "./NoGroupPage/NoGroupPage";
 
 class App extends React.Component {
   componentDidMount() {
@@ -28,6 +29,7 @@ class App extends React.Component {
   };
 
   render() {
+    const { isSignedIn, activeGroup } = this.props;
     return (
       <div className="wrapper">
         <Router history={history}>
@@ -40,12 +42,16 @@ class App extends React.Component {
             >
               Group<span>Text</span>
             </div>
-            <Switch>
-              <Route path="/admin" component={Admin} />
-              <Route path="/">
-                <main>{this.renderPage()}</main>
-              </Route>
-            </Switch>
+            {!isSignedIn || activeGroup ? (
+              <Switch>
+                <Route path="/admin" component={Admin} />
+                <Route path="/">
+                  <main>{this.renderPage()}</main>
+                </Route>
+              </Switch>
+            ) : (
+              <NoGroupPage />
+            )}
             <Footer />
           </div>
         </Router>
@@ -54,8 +60,9 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => ({
-  isSignedIn: auth.isSignedIn
+const mapStateToProps = ({ auth, group }) => ({
+  isSignedIn: auth.isSignedIn,
+  activeGroup: group.activeGroup
 });
 
 const mapDispatchToProps = dispatch => ({

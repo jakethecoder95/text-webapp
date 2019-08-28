@@ -42,7 +42,7 @@ const SuccessList = ({ nexmoErrors, people }) => {
 };
 
 const mapStateToProps = ({ group }) => ({
-  people: group.people
+  people: group.activeGroup.people
 });
 
 export default connect(mapStateToProps)(SuccessList);
