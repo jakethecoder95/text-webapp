@@ -12,11 +12,11 @@ import MessageDefaultsInput from "./MessageDefaultsInput/MessageDefaultsInput";
 const initialState = { message: "" };
 
 const Text = props => {
-  const { people, groupName } = props.group,
+  const { people, name } = props.group,
     [message, setMessage] = useState(initialState.message),
     [maxTextCharLength] = useState(160),
     [firstSendBtnClicked, setFirstSendBtnClicked] = useState(false),
-    [preMessageStr, setPreMessageStr] = useState(`${groupName} GroupText:`),
+    [preMessageStr, setPreMessageStr] = useState(`${name} GroupText:`),
     [postMessageStr, setPostMessageStr] = useState(
       "[No Reply. Text 2 to exit Group]"
     ),

@@ -1,4 +1,4 @@
-import { takeLatest, put } from "redux-saga/effects";
+import { takeLatest, take, put } from "redux-saga/effects";
 import store from "store";
 
 import {
@@ -8,7 +8,11 @@ import {
   SIGN_OUT,
   SIGN_IN_SUCCESS,
   SIGN_UP,
-  CLEAR_AUTH_ERRORS
+  CLEAR_AUTH_ERRORS,
+  INIT_USER,
+  INIT_GROUP_SAGA,
+  INIT_BUCKET_SAGA,
+  INIT_GROUP
 } from "../types";
 import server from "../../api/server";
 
@@ -48,11 +52,19 @@ function* signout() {
   yield console.log("signing out");
 }
 
+function* signInSuccess({ payload }) {
+  yield put({ type: INIT_USER, userInfo: payload.user });
+  yield put({ type: INIT_GROUP_SAGA, groups: payload.groups });
+  yield take(INIT_GROUP); // Everything after will happen only if INIT_GROUP action is completed
+  yield put({ type: INIT_BUCKET_SAGA });
+}
+
 function createAuthSaga() {
   return [
     takeLatest(SIGN_IN, signin),
     takeLatest(SIGN_OUT, signout),
-    takeLatest(SIGN_UP, signup)
+    takeLatest(SIGN_UP, signup),
+    takeLatest(SIGN_IN_SUCCESS, signInSuccess)
   ];
 }
 
