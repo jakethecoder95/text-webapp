@@ -15,7 +15,7 @@ export default () =>
       const response = yield server.get("/auth/init-group", {
         headers: { Authorization: authString }
       });
-      yield put({ type: SIGN_IN_SUCCESS, payload: response.data.group });
+      yield put({ type: SIGN_IN_SUCCESS, payload: response.data });
     } catch (err) {
       alert(
         "Looks like there was an issue logging you back in.  Please log back in."

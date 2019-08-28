@@ -18,8 +18,8 @@ function* signin({ payload }) {
   try {
     const response = yield server.post("/auth/login", { email, password });
     store.set("token", response.data.token);
-    store.set("groupId", response.data.group._id);
-    yield put({ type: SIGN_IN_SUCCESS, payload: response.data.group });
+    store.set("groupId", response.data.user._id);
+    yield put({ type: SIGN_IN_SUCCESS, payload: response.data });
   } catch (err) {
     if (err.response.status === 401) {
       yield put({ type: ERROR_LOGIN, payload: err.response.data });
@@ -33,8 +33,8 @@ function* signup({ payload }) {
   try {
     const response = yield server.put("/auth/signup", { ...payload });
     store.set("token", response.data.token);
-    store.set("groupId", response.data.group._id);
-    yield put({ type: SIGN_IN_SUCCESS, payload: response.data.group });
+    store.set("userId", response.data.user._id);
+    yield put({ type: SIGN_IN_SUCCESS, payload: response.data });
   } catch (err) {
     if (err.response.status === 422) {
       yield put({ type: ERROR_SIGNUP, payload: err.response.data });

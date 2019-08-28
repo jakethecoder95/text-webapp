@@ -1,10 +1,8 @@
-import { SIGN_IN_SUCCESS, SIGN_OUT, UPDATE_GROUP } from "../types";
+import { INIT_USER, SIGN_OUT } from "../types";
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case UPDATE_GROUP:
-      return { ...state, ...action.payload };
-    case SIGN_IN_SUCCESS:
+    case INIT_USER:
       return { ...state, ...action.payload };
     case SIGN_OUT:
       return {};
