@@ -18,6 +18,7 @@ function* initBucket() {
       headers: { Authorization: authString }
     });
     const bucket = response.data.bucket;
+    console.log(bucket);
     yield put({ type: INIT_BUCKET, bucket });
   } catch (err) {
     console.log(err);

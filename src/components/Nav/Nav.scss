@@ -5,8 +5,8 @@
 .content {
   min-width: 100vw;
   background-color: rgb(28, 32, 34);
-  @media (min-width: 1000px) {
-    min-width: 50%;
+  @media (min-width: 800px) {
+    min-width: 0;
     width: 100%;
   }
 }
@@ -18,11 +18,14 @@
   display: flex;
   z-index: 999;
   height: 100vh;
-  min-width: 55vw;
-  margin-left: -55vw;
+  min-width: 250px;
+  margin-left: -250px;
   transition: 500ms;
   background-color: darken(rgb(28, 32, 34), 0.75%);
   border-right: solid 1px rgba(255, 255, 255, 0.2);
+  .sidebar-nav {
+    width: 100%;
+  }
   .sidebar-list_group {
     width: 100%;
     a {
@@ -31,6 +34,7 @@
       color: rgba(204, 204, 204, 0.616);
       line-height: 2.25em;
       padding: 0 20px;
+      transition: 250ms ease-out;
     }
     .active,
     a:hover {
@@ -44,9 +48,13 @@
       font-size: 2em;
     }
   }
-  @media (min-width: 1000px) {
+  @media (min-width: 500px) {
     min-width: 300px;
     margin-left: -300px;
+  }
+  .hr {
+    margin: 0;
+    margin-bottom: 10px;
   }
 }
 

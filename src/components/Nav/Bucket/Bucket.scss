@@ -1,0 +1,32 @@
+.bucket-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  margin: auto;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 8px;
+  color: rgb(204, 204, 204);
+  transition: 250ms ease-out;
+
+  &:hover {
+    background-color: lighten(rgb(28, 32, 34), 1);
+  }
+
+  .bucket-icon {
+    text-align: center;
+  }
+  .fa-bitbucket {
+    font-size: 4em;
+    text-align: center;
+  }
+  .bucket-name {
+    @media (max-width: 800px) {
+      font-size: 0.9em;
+    }
+  }
+  .bucket-amount {
+    color: rgba(5, 255, 5, 0.473);
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+}

@@ -13,7 +13,11 @@ import history from "../history";
 import Nav from "./Nav/Nav";
 import NoGroupPage from "./NoGroupPage/NoGroupPage";
 
+const dtScreenWidth = window.innerWidth >= 1000;
+
 class App extends React.Component {
+  state = { showSidebar: dtScreenWidth };
+
   componentDidMount() {
     this.props.initApp();
   }
@@ -28,13 +32,29 @@ class App extends React.Component {
     return <Main />;
   };
 
+  contentClickEvent = () => {
+    const isMobileView = window.innerWidth <= 800;
+    if (isMobileView) {
+      this.onSidebarToggled(false);
+    }
+  };
+
+  onSidebarToggled = bool => this.setState({ showSidebar: bool });
+
   render() {
     const { isSignedIn, activeGroup } = this.props;
+    const { showSidebar } = this.state;
     return (
       <div className="wrapper">
         <Router history={history}>
-          {this.props.isSignedIn ? <Nav /> : null}
-          <div className="content">
+          {this.props.isSignedIn ? (
+            <Nav
+              toggled={showSidebar}
+              setToggled={this.onSidebarToggled}
+              dtScreenWidth={dtScreenWidth}
+            />
+          ) : null}
+          <div className="content" onClick={this.contentClickEvent}>
             <div
               className={`logo ${
                 this.props.isSignedIn ? "logo__signed-in" : ""
@@ -46,7 +66,7 @@ class App extends React.Component {
               <Switch>
                 <Route path="/admin" component={Admin} />
                 <Route path="/">
-                  <main>{this.renderPage()}</main>
+                  <main id="main">{this.renderPage()}</main>
                 </Route>
               </Switch>
             ) : (
