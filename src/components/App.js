@@ -7,11 +7,9 @@ import { INIT_APP } from "../redux/types";
 import Main from "./Main/Main";
 import StarterPage from "./StarterPage/StarterPage";
 import Loading from "./Loading/Loading";
-import Footer from "./Footer/Footer";
 import Admin from "./Admin/Admin";
 import history from "../history";
 import Nav from "./Nav/Nav";
-import NoGroupPage from "./NoGroupPage/NoGroupPage";
 
 const dtScreenWidth = window.innerWidth >= 1000;
 
@@ -62,17 +60,12 @@ class App extends React.Component {
             >
               Group<span>Text</span>
             </div>
-            {!isSignedIn || activeGroup ? (
-              <Switch>
-                <Route path="/admin" component={Admin} />
-                <Route path="/">
-                  <main id="main">{this.renderPage()}</main>
-                </Route>
-              </Switch>
-            ) : (
-              <NoGroupPage />
-            )}
-            <Footer />
+            <Switch>
+              <Route path="/admin" component={Admin} />
+              <Route path="/">
+                <main id="main">{this.renderPage()}</main>
+              </Route>
+            </Switch>
           </div>
         </Router>
       </div>
