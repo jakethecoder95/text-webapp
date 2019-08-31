@@ -1,0 +1,75 @@
+.icon-wrapper {
+  width: 100%;
+  color: rgba(255, 255, 255, 0.822);
+  overflow: hidden;
+
+  .slogan-and-icon {
+    position: absolute;
+    right: 0;
+    bottom: 4rem;
+    animation: fadeup 800ms;
+    .fa {
+      width: 80%;
+      text-align: right;
+      margin-right: 4rem;
+      font-size: 13rem;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-right: 4rem;
+    }
+  }
+  @media (max-width: 1000px) {
+    .no-group_icon {
+      display: none;
+    }
+  }
+}
+
+.circle-bg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  clip-path: circle(50% at 100% 100%);
+  background-color: #00c3ffb4;
+  overflow: hidden;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
+}
+
+@keyframes fadeup {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes fadeup {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-moz-keyframes fadeup {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

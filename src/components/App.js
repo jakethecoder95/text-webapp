@@ -40,7 +40,6 @@ class App extends React.Component {
   onSidebarToggled = bool => this.setState({ showSidebar: bool });
 
   render() {
-    const { isSignedIn, activeGroup } = this.props;
     const { showSidebar } = this.state;
     return (
       <div className="wrapper">

@@ -1,6 +1,12 @@
 body {
   background-color: darken(rgb(28, 32, 34), 0.75%);
   color: rgb(204, 204, 204);
+  max-height: 100vh;
+}
+
+.page-content {
+  animation: fadeIn 500ms ease-in;
+  overflow: hidden;
 }
 
 .btn-circle {
@@ -8,7 +14,7 @@ body {
 }
 
 .btn-primary {
-  background-color: rgba(0, 195, 255, 0.75) !important;
+  background-color: #00c3ffb4 !important;
   color: white;
 }
 .btn-outline-primary {
@@ -59,11 +65,6 @@ body {
     color: rgb(204, 204, 204);
     border-bottom: 3px solid rgb(204, 204, 204);
   }
-}
-
-.page-content {
-  animation: fadeIn 500ms ease-in;
-  min-height: 95vh;
 }
 
 .hr {

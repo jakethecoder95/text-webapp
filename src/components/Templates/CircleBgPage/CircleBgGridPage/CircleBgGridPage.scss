@@ -1,0 +1,26 @@
+.circle-bg_grid-page {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  height: 90vh;
+
+  .circle-bg_grid-content {
+    .circle-bg_grid-left {
+      max-width: 450px;
+      margin: auto;
+    }
+    .fa {
+      margin-left: 10px;
+      transition: 250ms;
+    }
+    .btn:hover {
+      .fa {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 1000px) {
+    display: block;
+    padding: 2rem 1rem;
+  }
+}

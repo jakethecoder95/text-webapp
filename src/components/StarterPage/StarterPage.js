@@ -15,7 +15,7 @@ const StarterPage = () => {
   };
 
   return (
-    <div className="starter-page">
+    <div className="starter-page page-content">
       <div className="navigation starter-page__nav">
         <div
           onClick={() => setHasAccount(false)}
