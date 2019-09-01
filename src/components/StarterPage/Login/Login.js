@@ -1,4 +1,3 @@
-import "./Login.scss";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Form, Field } from "react-final-form";
