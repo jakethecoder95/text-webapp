@@ -4,6 +4,24 @@ body {
   max-height: 100vh;
 }
 
+.wrapper {
+  display: flex;
+  height: 100vh;
+  @media (min-width: 800px) {
+    min-height: 100vh;
+    overflow: hidden;
+  }
+}
+
+.content {
+  min-width: 100vw;
+  background-color: rgb(28, 32, 34);
+  @media (min-width: 800px) {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
 .page-content {
   animation: fadeIn 500ms ease-in;
   overflow: hidden;
@@ -77,6 +95,17 @@ body {
     rgba(255, 255, 255, 0.7),
     rgba(255, 255, 255, 0)
   );
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
 }
 
 @keyframes fadeIn {

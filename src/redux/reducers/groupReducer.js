@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
     case INIT_GROUP:
       return { ...state, ...action.payload };
     case SIGN_OUT:
-      return {};
+      return initialState;
     default:
       return state;
   }

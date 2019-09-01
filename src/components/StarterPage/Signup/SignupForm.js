@@ -6,6 +6,7 @@ import FormField from "../FormField/FormField";
 import isEmail from "../../../util/validateEmail";
 import isPhoneNumber from "../../../util/validatePhone";
 import { SIGN_UP } from "../../../redux/types";
+import Spinner from "../../Loading/Spinner";
 
 const SignupForm = props => {
   const [signingUp, setSigningUp] = useState(false);
@@ -54,21 +55,7 @@ const SignupForm = props => {
     return errors;
   };
 
-  const signingUpLoader = (
-    <div className="signing-up__loader">
-      <div
-        className="spinner-border"
-        style={{
-          width: "5rem",
-          height: "5rem"
-        }}
-        role="status"
-      >
-        <span className="sr-only">Loading...</span>
-      </div>
-      <p>Signing you up..</p>
-    </div>
-  );
+  const signingUpLoader = <Spinner message="Signing you up..." size="large" />;
 
   return (
     <>
@@ -81,8 +68,6 @@ const SignupForm = props => {
             onSubmit={handleSubmit}
             style={signingUp ? { display: "none" } : {}}
           >
-            <h2 className="text-center">Signup</h2>
-            <hr className="hr" />
             <Field name="name" label="Name" component={FormField} />
             <Field name="email" label="Email" component={FormField} />
             <Field

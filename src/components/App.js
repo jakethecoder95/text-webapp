@@ -18,6 +18,9 @@ class App extends React.Component {
 
   componentDidMount() {
     this.props.initApp();
+    if (history.location.pathname !== "/" && !this.props.isSignedIn) {
+      history.push("/");
+    }
   }
 
   renderPage = () => {

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Form, Field } from "react-final-form";
 
 import FormField from "../FormField/FormField";
+import Spinner from "../../Loading/Spinner";
 import { SIGN_IN } from "../../../redux/types";
 
 const Login = props => {
@@ -30,21 +31,7 @@ const Login = props => {
     return errors;
   };
 
-  const loggingInLoader = (
-    <div className="logging-in__loader">
-      <div
-        className="spinner-border"
-        style={{
-          width: "5rem",
-          height: "5rem"
-        }}
-        role="status"
-      >
-        <span className="sr-only">Loading...</span>
-      </div>
-      <p>Logging In...</p>
-    </div>
-  );
+  const loggingInLoader = <Spinner message="Logging In..." size="large" />;
 
   return (
     <div className="page-content container">
@@ -58,8 +45,6 @@ const Login = props => {
             className="starter-page__form"
             style={loggingIn ? { display: "none" } : {}}
           >
-            <h2 className="text-center">Login</h2>
-            <hr className="hr" />
             <Field name="email" label="Email" component={FormField} />
             <Field
               name="password"
