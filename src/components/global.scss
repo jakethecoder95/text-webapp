@@ -97,6 +97,32 @@ body {
   );
 }
 
+.form-control {
+  background-color: #333 !important;
+  border-color: #666;
+  color: rgb(204, 204, 204) !important;
+  &:focus,
+  &:active {
+    background-color: #333;
+    box-shadow: none;
+  }
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0, 195, 255, 0.03) inset;
+  color: white !important;
+  transition: color 5000s ease-in-out 0s, background-color 5000s ease-in-out 0s;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   /* display: none; <- Crashes Chrome on hover */
