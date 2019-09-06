@@ -1,4 +1,3 @@
-import "./StarterPage.scss";
 import React, { useState } from "react";
 
 import Signup from "./Signup/Signup";
@@ -26,7 +25,7 @@ const StarterPage = () => {
             onClick={() => setHasAccount(false)}
             className={!hasAccount ? "active" : ""}
           >
-            Signup
+            Sign Up
           </div>
           <div
             onClick={() => setHasAccount(true)}

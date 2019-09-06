@@ -11,7 +11,7 @@ const Spinner = ({ message, size }) => (
       </span>
     </div>
     <p>
-      <small>{message || "Loading..."}</small>
+      <small>{message}</small>
     </p>
   </div>
 );

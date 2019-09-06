@@ -140,7 +140,7 @@ const PersonalInfo = props => {
 };
 
 const mapStateToProps = ({ group }) => ({
-  group
+  group: group.activeGroup
 });
 
 const mapDispatchToProps = dispatch => ({

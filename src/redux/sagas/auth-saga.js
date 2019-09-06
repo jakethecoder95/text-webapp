@@ -12,7 +12,8 @@ import {
   INIT_USER,
   INIT_GROUP_SAGA,
   INIT_BUCKET_SAGA,
-  INIT_GROUP
+  INIT_GROUP,
+  INITIALIZED_APP
 } from "../types";
 import server from "../../api/server";
 
@@ -57,6 +58,7 @@ function* signInSuccess({ payload }) {
   yield put({ type: INIT_GROUP_SAGA, groups: payload.groups });
   yield take(INIT_GROUP); // Everything after will happen only if INIT_GROUP action is completed
   yield put({ type: INIT_BUCKET_SAGA });
+  yield put({ type: INITIALIZED_APP });
 }
 
 function createAuthSaga() {

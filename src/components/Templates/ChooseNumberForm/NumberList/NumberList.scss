@@ -1,0 +1,43 @@
+ul.number-list {
+  position: relative;
+  padding-left: 0;
+  max-height: 60vh;
+  min-height: 20vh;
+  overflow: scroll;
+  overflow-x: hidden;
+
+  .number {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    list-style: none;
+    align-items: center;
+    text-align: center;
+    font-size: 1em;
+    padding: 0 5%;
+    height: 40px;
+    background-color: lighten(rgb(28, 32, 34), 1%);
+    cursor: pointer;
+    transition: box-shadow 100ms;
+
+    &:nth-child(odd) {
+      background-color: lighten(rgb(28, 32, 34), 3%);
+    }
+    &:hover {
+      -webkit-box-shadow: 0 0 0px 1000px rgba(0, 195, 255, 0.03) inset;
+    }
+    &:active {
+      -webkit-box-shadow: 0 0 0px 1000px rgba(0, 195, 255, 0.199) inset;
+    }
+  }
+  .selected {
+    -webkit-box-shadow: 0 0 0px 1000px rgba(0, 195, 255, 0.199) inset;
+    &:hover {
+      -webkit-box-shadow: 0 0 0px 1000px rgba(0, 195, 255, 0.199) inset;
+    }
+  }
+  .alert {
+    font-size: 1em;
+    max-width: 90%;
+    margin: 1rem auto;
+  }
+}

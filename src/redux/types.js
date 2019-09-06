@@ -7,6 +7,7 @@ export const INIT_BUCKET_SAGA = "INIT_BUCKET_SAGA";
 export const INIT_USER = "INIT_USER";
 export const INIT_GROUP = "INIT_GROUP";
 export const INIT_GROUP_SAGA = "INIT_GROUP_SAGA";
+export const INITIALIZED_APP = "INITIALIZED_APP";
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS";
 export const SIGN_OUT = "SIGN_OUT";

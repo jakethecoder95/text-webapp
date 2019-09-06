@@ -11,8 +11,9 @@ import AddGroup from "./AddGroup/AddGroup";
 import history from "../../history";
 
 const LoggedInPage = ({ hasActiveGroup }) => {
-  const renderIfActiveGroup = Component =>
-    hasActiveGroup ? <Component /> : <NoGroupPage />;
+  const renderIfActiveGroup = Component => {
+    return hasActiveGroup ? <Component /> : <NoGroupPage />;
+  };
   return (
     <Router history={history}>
       <Switch>

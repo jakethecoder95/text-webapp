@@ -65,7 +65,7 @@ const Group = props => {
 };
 
 const mapStateToProps = ({ group }) => ({
-  people: group.people
+  people: group.activeGroup.people
 });
 
 export default connect(mapStateToProps)(Group);

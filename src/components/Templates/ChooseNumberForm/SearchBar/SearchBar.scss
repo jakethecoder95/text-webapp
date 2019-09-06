@@ -1,0 +1,12 @@
+.search-bar {
+  .navbar {
+    padding-left: 40px;
+  }
+  .navbar.navbar-dark,
+  .navbar.bg-dark {
+    background-color: lighten(rgb(28, 32, 34), 8%);
+  }
+  .form-control {
+    min-width: 100px;
+  }
+}

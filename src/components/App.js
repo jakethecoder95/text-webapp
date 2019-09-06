@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 
   renderPage = () => {
-    if (this.props.isSignedIn === null) {
+    if (!this.props.appInitialized) {
       return <Loading />;
     }
     if (this.props.isSignedIn === false) {
@@ -44,10 +44,11 @@ class App extends React.Component {
 
   render() {
     const { showSidebar } = this.state;
+    const { appInitialized, isSignedIn } = this.props;
     return (
       <div className="wrapper">
         <Router history={history}>
-          {this.props.isSignedIn ? (
+          {appInitialized && isSignedIn ? (
             <Nav
               toggled={showSidebar}
               setToggled={this.onSidebarToggled}
@@ -55,11 +56,7 @@ class App extends React.Component {
             />
           ) : null}
           <div className="content" onClick={this.contentClickEvent}>
-            <div
-              className={`logo ${
-                this.props.isSignedIn ? "logo__signed-in" : ""
-              }`}
-            >
+            <div className={`logo ${isSignedIn ? "logo__signed-in" : ""}`}>
               Group<span>Text</span>
             </div>
             <Switch>
@@ -75,9 +72,10 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ auth, group }) => ({
+const mapStateToProps = ({ auth, group, app }) => ({
   isSignedIn: auth.isSignedIn,
-  activeGroup: group.activeGroup
+  activeGroup: group.activeGroup,
+  appInitialized: app.appInitialized
 });
 
 const mapDispatchToProps = dispatch => ({

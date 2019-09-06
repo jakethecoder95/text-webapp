@@ -7,10 +7,14 @@ import server from "../../api/server";
 function* initBucket() {
   const state = yield select();
   const activeGroup = state.group.activeGroup;
+
+  // If there is an active group, use that groups bucket
   if (activeGroup) {
     if (activeGroup.bucket)
       return yield put({ type: INIT_BUCKET, bucket: activeGroup.bucket });
   }
+
+  // If there is no active group then go get the users default bucket
   const token = store.get("token");
   const authString = `Bearer ${token}`;
   try {

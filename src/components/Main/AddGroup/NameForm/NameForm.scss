@@ -1,0 +1,23 @@
+.add-name-form {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .input-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  input {
+    height: 2em;
+    font-size: 1.5em;
+  }
+
+  button {
+    margin: 0 1rem;
+  }
+}

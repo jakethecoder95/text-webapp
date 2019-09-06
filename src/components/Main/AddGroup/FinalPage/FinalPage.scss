@@ -1,0 +1,15 @@
+.final-page {
+  padding: 1.5rem;
+  font-size: 1.4em;
+  .final-page-headers {
+    height: 2em;
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    border-bottom: solid 1px rgb(204, 204, 204);
+    margin-bottom: 2rem;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+}
