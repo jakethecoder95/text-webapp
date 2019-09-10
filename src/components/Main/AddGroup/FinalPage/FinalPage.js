@@ -1,6 +1,8 @@
 import "./FinalPage.scss";
 import React from "react";
 
+import PaymentForm from "../../../Templates/PaymentForm/PaymentForm";
+
 const FinalPage = ({ name, number }) => {
   return (
     <div className="final-page">
@@ -18,6 +20,7 @@ const FinalPage = ({ name, number }) => {
         </div>
       </div>
       <div className="text-right">Total: $2.00</div>
+      <PaymentForm />
     </div>
   );
 };

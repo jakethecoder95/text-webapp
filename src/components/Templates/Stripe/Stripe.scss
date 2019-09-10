@@ -1,0 +1,41 @@
+.StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+  width: 90%;
+  max-width: 500px;
+  margin-right: 10px;
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.checkout {
+  padding: 20px;
+  background-color: rgba(0, 195, 255, 0.425);
+}
+
+.card-container {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}

@@ -34,7 +34,7 @@ const NoGroupPage = props => (
         role="button"
       >
         Add a Group
-        <i className="fa fa-chevron-right" />
+        <i className="action-arrow fa fa-chevron-right" />
       </Link>
     </div>
   </CircleBgGridPage>
