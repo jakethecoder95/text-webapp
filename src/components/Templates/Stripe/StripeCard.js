@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 
 const StripeCard = props => {
-  const submit = async ev => {
-    // User clicked submit
+  const [submitted, setSubmitted] = useState(false);
+
+  const submit = async () => {
+    setSubmitted(true);
+    const { token } = await props.stripe.createToken({ name: "Subscribe" });
+    props.onSubmit(token);
   };
 
   return (
     <div className="checkout">
       <div className="card-container">
         <CardElement />
-        <button className="btn btn-outline-light" onClick={submit}>
+        <button
+          className="btn btn-outline-light"
+          onClick={submit}
+          disabled={submitted}
+        >
           Pay
         </button>
       </div>

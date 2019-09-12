@@ -3,7 +3,7 @@ import React from "react";
 
 import PaymentForm from "../../../Templates/PaymentForm/PaymentForm";
 
-const FinalPage = ({ name, number }) => {
+const FinalPage = ({ name, number, handleSubmit }) => {
   return (
     <div className="final-page">
       <h1 className="text-center">Comfirm</h1>
@@ -20,7 +20,7 @@ const FinalPage = ({ name, number }) => {
         </div>
       </div>
       <div className="text-right">Total: $2.00</div>
-      <PaymentForm />
+      <PaymentForm handleSubmit={handleSubmit} />
     </div>
   );
 };

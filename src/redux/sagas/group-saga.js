@@ -36,6 +36,8 @@ function* initGroup({ groups }) {
   });
 }
 
+function* createGroup(action) {}
+
 function createGroupSaga() {
   return [takeLatest(INIT_GROUP_SAGA, initGroup)];
 }

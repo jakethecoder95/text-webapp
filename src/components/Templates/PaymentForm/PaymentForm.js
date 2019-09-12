@@ -6,6 +6,10 @@ import Stripe from "../Stripe/Stripe";
 const PaymanetForm = props => {
   const [value, setValue] = useState(5);
 
+  const onSubmit = token => {
+    props.handleSubmit(value, token);
+  };
+
   return (
     <div className="payment-form">
       <h3>How much would you like to put in your bucket?</h3>
@@ -33,10 +37,14 @@ const PaymanetForm = props => {
               Money will be automatically taken out every month for your phone
               number bill.
             </li>
+            <li>
+              Money will also be taken from this bucket when you send texts
+              ($0.015 per/text)
+            </li>
           </ul>
         </div>
       </div>
-      <Stripe />
+      <Stripe amount={value} onSubmit={onSubmit} />
     </div>
   );
 };
