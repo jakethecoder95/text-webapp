@@ -70,7 +70,6 @@ class ChooseNumberForm extends React.Component {
 
     return (
       <div>
-        <h3 className="form-title">Choose your groups phone number.</h3>
         <SearchBar
           searchType={searchType}
           value={searchValue}

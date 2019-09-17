@@ -1,0 +1,22 @@
+.progress-nav {
+  margin-bottom: 1rem;
+  .progress-tab {
+    border: none;
+    background-color: inherit;
+    border-bottom: dashed 4px rgb(204, 204, 204);
+    opacity: 0.6;
+    color: rgba(204, 204, 204, 0.616);
+    padding: 10px 20px;
+    margin-right: 5px;
+    outline: none;
+  }
+
+  .active {
+    opacity: 1;
+    font-weight: bold;
+  }
+  .complete {
+    color: rgb(40, 168, 70);
+    border-color: rgb(40, 168, 70);
+  }
+}

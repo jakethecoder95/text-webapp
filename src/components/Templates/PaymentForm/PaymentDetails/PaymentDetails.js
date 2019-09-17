@@ -11,9 +11,7 @@ const PaymentDetails = ({ amount }) => {
   const popover = (
     <Popover>
       <Popover.Title as="h3">
-        <span style={{ color: "black" }}>
-          Here is the math that going on here!
-        </span>
+        <span style={{ color: "black" }}>Here is how we got this number!</span>
       </Popover.Title>
       <Popover.Content>
         <p>
@@ -36,11 +34,13 @@ const PaymentDetails = ({ amount }) => {
 
   return (
     <div className="payment-details">
-      <span className="final-amount">{smsLimit}</span>texts per/month
+      <p className="final-amount">
+        <span>{smsLimit}</span>texts per/month
+      </p>
       <OverlayTrigger
         target={target.current}
         show={show}
-        placement="right"
+        placement="bottom"
         overlay={popover}
       >
         <div className="info">

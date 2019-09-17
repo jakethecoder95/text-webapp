@@ -11,6 +11,7 @@ import FinalPage from "./FinalPage/FinalPage";
 import { INIT_GROUP } from "../../../redux/types";
 import Success from "../../Templates/Success/Success";
 import Spinner from "../../Loading/Spinner";
+import ProgressNav from "./ProgressNav/ProgressNav";
 
 const AddGroup = props => {
   const [name, setName] = useState("");
@@ -62,6 +63,7 @@ const AddGroup = props => {
 
   return (
     <div className="page-content container add-group">
+      <ProgressNav onStep={onStep} setOnStep={setOnStep} />
       {onStep === 1 && (
         <NameForm
           name={name}
