@@ -1,0 +1,17 @@
+.success-page {
+  height: 60vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.success-wrapper {
+  padding: 2rem;
+  border: solid 1px #28a745;
+  border-radius: 10px;
+
+  .fa-check-circle {
+    font-size: 5rem;
+  }
+}

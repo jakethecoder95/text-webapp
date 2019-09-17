@@ -1,50 +1,18 @@
 import "./PaymentForm.scss";
-import React, { useState } from "react";
+import React from "react";
 
-import Stripe from "../Stripe/Stripe";
+import PaymentDetails from "./PaymentDetails/PaymentDetails";
+import ChoosePaymentAmount from "./ChoosePaymentAmount/ChoosePaymentAmount";
 
-const PaymanetForm = props => {
-  const [value, setValue] = useState(5);
-
-  const onSubmit = token => {
-    props.handleSubmit(value, token);
-  };
-
+const PaymanetForm = ({ amount, onAmountChange }) => {
   return (
     <div className="payment-form">
-      <h3>How much would you like to put in your bucket?</h3>
       <div className="choose-value-wrapper">
-        <div className="choose-value">
-          <div className="value">${value}</div>
-          <div className="inc-or-dec">
-            <button className="inc" onClick={() => setValue(value + 1)}>
-              <p className="fa fa-caret-up"></p>
-            </button>
-            <button
-              className="dec"
-              onClick={() => setValue(value - 1)}
-              disabled={value <= 5}
-            >
-              <p className="fa fa-caret-down"></p>
-            </button>
-          </div>
-        </div>
+        <ChoosePaymentAmount amount={amount} onAmountChange={onAmountChange} />
         <div className="choose-value-desctiption">
-          <ul>
-            <li>Minimum of $5 payments</li>
-            <li>Your account will be disabled if it goes under $1</li>
-            <li>
-              Money will be automatically taken out every month for your phone
-              number bill.
-            </li>
-            <li>
-              Money will also be taken from this bucket when you send texts
-              ($0.015 per/text)
-            </li>
-          </ul>
+          <PaymentDetails amount={amount} />
         </div>
       </div>
-      <Stripe amount={value} onSubmit={onSubmit} />
     </div>
   );
 };

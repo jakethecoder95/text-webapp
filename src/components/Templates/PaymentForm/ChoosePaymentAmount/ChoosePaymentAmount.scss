@@ -1,0 +1,57 @@
+.choose-value {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  width: 200px;
+  height: 75px;
+  margin-bottom: 2rem;
+  color: rgba(0, 0, 0, 0.781);
+
+  .value {
+    font-size: 3em;
+    text-align: center;
+    width: 170px;
+  }
+  .inc-or-dec {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 80px;
+
+    .inc {
+      border-top-right-radius: 10px;
+      border: none;
+      background: inherit;
+      border-left: 1px solid rgba(0, 0, 0, 0.356);
+      height: 50%;
+      transition: 250ms;
+    }
+    .dec {
+      border-bottom-right-radius: 10px;
+      border: none;
+      background: inherit;
+      border-top: 1px solid rgba(0, 0, 0, 0.356);
+      border-left: 1px solid rgba(0, 0, 0, 0.356);
+      height: 50%;
+      transition: 250ms;
+
+      &:disabled {
+        .fa {
+          color: grey;
+        }
+      }
+    }
+
+    .inc:focus,
+    .dec:focus {
+      outline: none;
+    }
+    .inc:active,
+    .dec:active {
+      background: rgb(189, 189, 189);
+    }
+    .fa {
+      color: rgba(0, 0, 0, 0.781);
+    }
+  }
+}

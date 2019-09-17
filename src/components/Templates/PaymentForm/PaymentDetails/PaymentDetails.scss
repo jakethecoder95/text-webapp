@@ -1,0 +1,21 @@
+.payment-details {
+  margin-left: 3rem;
+  font-size: 2em;
+  display: flex;
+
+  .final-amount {
+    font-size: 1.75em;
+    font-weight: bold;
+    margin-right: 20px;
+  }
+
+  .info {
+    min-width: 20px;
+    margin-left: 2px;
+    line-height: 50%;
+    max-height: 20px;
+  }
+  .fa-question-circle {
+    font-size: 0.5em;
+  }
+}

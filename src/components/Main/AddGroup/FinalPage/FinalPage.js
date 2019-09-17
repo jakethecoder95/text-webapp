@@ -1,26 +1,32 @@
 import "./FinalPage.scss";
-import React from "react";
+import React, { useState } from "react";
 
 import PaymentForm from "../../../Templates/PaymentForm/PaymentForm";
+import Stripe from "../../../Templates/Stripe/Stripe";
+import Disclaimer from "./Disclaimer";
+import PurchaseSummary from "./PurchaseSummary";
 
-const FinalPage = ({ name, number, handleSubmit }) => {
+const FinalPage = ({ name, number, handleSubmit, errorMessage }) => {
+  const [amount, setAmount] = useState(5);
+
+  const onSubmit = stripeToken => handleSubmit(amount, stripeToken);
+  const renderErrorMessage = () => {
+    if (!errorMessage) {
+      return null;
+    }
+    return <div className="alert alert-danger">{errorMessage}</div>;
+  };
+
   return (
     <div className="final-page">
-      <h1 className="text-center">Comfirm</h1>
-      <div className="final-page-headers">
-        <p>1) Group Name: {name}</p>
-      </div>
-      <div className="final-page-headers">
-        <p>2) Group Number: {number}</p>
-        <div className="cost-div text-right">
-          <p>
-            $2.00
-            <span> / monthly</span>
-          </p>
-        </div>
-      </div>
-      <div className="text-right">Total: $2.00</div>
-      <PaymentForm handleSubmit={handleSubmit} />
+      <h3>Choose your plan</h3>
+      <hr className="hr"></hr>
+      <PaymentForm onAmountChange={setAmount} amount={amount} />
+      <Disclaimer amount={amount} />
+      <hr className="hr" />
+      <PurchaseSummary name={name} number={number} amount={amount} />
+      {renderErrorMessage()}
+      <Stripe amount={amount} onSubmit={onSubmit} />
     </div>
   );
 };

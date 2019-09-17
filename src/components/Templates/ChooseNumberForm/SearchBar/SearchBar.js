@@ -62,7 +62,7 @@ const SearchBar = props => {
                 className="btn btn-primary"
                 disabled={value.length === 0}
               >
-                Go
+                Search
               </button>
             </div>
           </div>

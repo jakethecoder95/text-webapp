@@ -22,6 +22,19 @@ body {
   }
 }
 
+.action-arrow {
+  margin-left: 10px;
+  transition: 250ms;
+}
+.btn:hover {
+  .action-arrow {
+    margin-left: 20px;
+  }
+}
+.action-btn.btn-success:hover {
+  background-color: #28a745 !important;
+}
+
 .page-content {
   animation: fadeIn 500ms ease-in;
   overflow: hidden;
@@ -91,7 +104,6 @@ body {
   scrollbar-3dlight-color: #646464;
   scrollbar-highlight-color: #646464;
   scrollbar-shadow-color: #646464;
-  scrollbar-dark-shadow-color: #646464;
 
   &::-webkit-scrollbar {
     width: 8px;
