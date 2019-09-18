@@ -11,7 +11,6 @@ import {
   CLEAR_AUTH_ERRORS,
   INIT_USER,
   INIT_GROUP_SAGA,
-  INIT_BUCKET_SAGA,
   INIT_GROUP,
   INITIALIZED_APP
 } from "../types";
@@ -57,7 +56,6 @@ function* signInSuccess({ payload }) {
   yield put({ type: INIT_USER, userInfo: payload.user });
   yield put({ type: INIT_GROUP_SAGA, groups: payload.groups });
   yield take(INIT_GROUP); // Everything after will happen only if INIT_GROUP action is completed
-  yield put({ type: INIT_BUCKET_SAGA });
   yield put({ type: INITIALIZED_APP });
 }
 

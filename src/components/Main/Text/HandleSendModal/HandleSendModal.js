@@ -19,15 +19,16 @@ const HandleSendModal = props => {
     const authString = `Bearer ${token}`;
     try {
       const response = await server.post(
-        "/send-text",
+        "/sms/send-group",
         {
           password,
           ...people,
-          message: props.message
+          message: props.message,
+          groupId: props.group._id
         },
         { headers: { Authorization: authString } }
       );
-      if (response.data.failedTxts.length > 0) {
+      if (response.data.failedTexts.length > 0) {
         setErrors({
           nexmo: response.data.failedTxts
         });
@@ -37,6 +38,7 @@ const HandleSendModal = props => {
       }
       setMessageWasSuccessfull(true);
     } catch (err) {
+      console.log(err);
       setMessageWasSuccessfull(false);
       if (err.response.status === 401) {
         setErrors({ ...errors, password: "Incorrect password" });

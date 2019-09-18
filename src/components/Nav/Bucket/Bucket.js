@@ -30,7 +30,7 @@ const Bucket = ({ bucket }) => {
 };
 
 const mapStateToProps = state => ({
-  bucket: state.bucket
+  bucket: {}
 });
 
 export default connect(mapStateToProps)(Bucket);

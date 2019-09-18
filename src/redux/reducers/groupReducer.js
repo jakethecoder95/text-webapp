@@ -8,7 +8,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_GROUP:
-      return { ...state, ...action.payload };
+      return { ...state, activeGroup: { ...action.payload } };
     case INIT_GROUP:
       return { ...state, ...action.payload };
     case SIGN_OUT:

@@ -51,6 +51,7 @@ const Group = props => {
         page={page}
         people={peopleToBeRendered}
         setAlerts={setAlerts}
+        groupId={props.groupId}
       />
       {props.people.length > pageListLength && (
         <Pagination
@@ -65,7 +66,8 @@ const Group = props => {
 };
 
 const mapStateToProps = ({ group }) => ({
-  people: group.activeGroup.people
+  people: group.activeGroup.people,
+  groupId: group.activeGroup._id
 });
 
 export default connect(mapStateToProps)(Group);

@@ -2,7 +2,7 @@ import React from "react";
 import server from "../../../../api/server";
 import store from "store";
 
-const Person = ({ person, updateGroup, setAlerts }) => {
+const Person = ({ person, updateGroup, setAlerts, groupId }) => {
   const deletePerson = async personId => {
     const token = store.get("token");
     const authString = `Bearer ${token}`;
@@ -10,7 +10,8 @@ const Person = ({ person, updateGroup, setAlerts }) => {
       const response = await server.delete("/manage/delete-person", {
         data: {
           personId,
-          authString
+          authString,
+          groupId
         }
       });
       updateGroup(response.data.group);

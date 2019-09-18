@@ -31,7 +31,7 @@ const AddGroup = props => {
         { tokenId: token.id, subscriptionAmount: amount, name, number },
         { headers: { Authorization: authString } }
       );
-      props.initGroup(response.data.group);
+      props.initGroup({ ...props.group, activeGroup: response.data.group });
       setSubmitSuccessful(true);
     } catch (err) {
       if (err.response) {
@@ -94,7 +94,11 @@ const mapDispatchToProps = dispatch => ({
   initGroup: group => dispatch({ type: INIT_GROUP, payload: group })
 });
 
+const mapStateToProps = ({ group }) => ({
+  group
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(AddGroup);

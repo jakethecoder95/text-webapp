@@ -25,7 +25,7 @@ const AddPerson = props => {
     try {
       const response = await server.put(
         "/manage/add-person",
-        { name, number },
+        { name, number, groupId: props.group._id },
         { headers: { Authorization: authString } }
       );
       setFirstName("");
@@ -80,7 +80,7 @@ const AddPerson = props => {
             value={number}
             onChange={onNumberChange}
           />
-          <button className="btn btn-outline-info" disabled={!isValid}>
+          <button className="btn btn-info" disabled={!isValid}>
             Add
           </button>
         </div>
@@ -93,7 +93,11 @@ const mapDispatchToProps = dispatch => ({
   updateGroup: group => dispatch({ type: UPDATE_GROUP, payload: group })
 });
 
+const mapStateToProps = ({ group }) => ({
+  group: group.activeGroup
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(AddPerson);

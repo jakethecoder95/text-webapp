@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import Person from "./Person";
 import { UPDATE_GROUP } from "../../../../redux/types";
 
-const PeopleList = ({ people, updateGroup, setAlerts }) => {
+const PeopleList = ({ people, updateGroup, setAlerts, groupId }) => {
   if (people.length === 0) {
     return (
       <h1 className="text-center" style={{ marginBottom: "2rem" }}>
@@ -21,6 +21,7 @@ const PeopleList = ({ people, updateGroup, setAlerts }) => {
         key={person._id}
         updateGroup={updateGroup}
         setAlerts={setAlerts}
+        groupId={groupId}
       />
     );
   });
