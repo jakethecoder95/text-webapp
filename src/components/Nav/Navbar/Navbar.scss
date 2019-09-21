@@ -1,0 +1,43 @@
+.top-navbar {
+  height: 70px;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 8px 6px -6px #111;
+
+  .nav-toggler {
+    margin-right: 1rem;
+  }
+
+  .dropdown button {
+    background: none;
+    color: rgb(204, 204, 204);
+    border: solid 1px rgb(204, 204, 204);
+    padding: 5px 30px;
+    border-radius: 20px;
+    font-size: 1.25rem;
+    &:focus {
+      outline: none;
+    }
+
+    small {
+      margin-right: 10px;
+    }
+  }
+  .dropdown-menu {
+    width: 250px;
+  }
+
+  .form-inline {
+    .btn {
+      margin-left: 0.5rem;
+    }
+  }
+
+  .plus-sign {
+    font-size: 1.2em;
+  }
+  .fa-plus-circle {
+    color: rgb(0, 195, 255);
+    margin-right: 5px;
+  }
+}

@@ -57,14 +57,13 @@ body {
   text-align: center;
   font-weight: bold;
   font-size: 3em;
+  color: rgb(204, 204, 204);
   span {
     color: rgb(0, 195, 255);
   }
 }
 .logo__signed-in {
-  @media (max-width: 500px) {
-    margin-left: 2rem;
-  }
+  display: none;
 }
 
 .link {
@@ -99,6 +98,8 @@ body {
 }
 
 .scrollbar {
+  overflow: scroll;
+  overflow-x: hidden;
   scrollbar-face-color: #646464;
   scrollbar-base-color: #646464;
   scrollbar-3dlight-color: #646464;
@@ -159,7 +160,7 @@ body {
   );
 }
 
-.form-control {
+#root .form-control {
   background-color: #23282a !important;
   border: solid 1px #00000000; // Invisible
   color: rgb(204, 204, 204) !important;

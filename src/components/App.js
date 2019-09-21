@@ -8,8 +8,9 @@ import Main from "./Main/Main";
 import StarterPage from "./StarterPage/StarterPage";
 import Loading from "./Loading/Loading";
 import Admin from "./Admin/Admin";
+import Navbar from "./Nav/Navbar/Navbar";
 import history from "../history";
-import Nav from "./Nav/Nav";
+import Sidebar from "./Nav/Sidebar/Sidebar";
 
 const dtScreenWidth = window.innerWidth >= 1000;
 
@@ -33,13 +34,6 @@ class App extends React.Component {
     return <Main />;
   };
 
-  contentClickEvent = () => {
-    const isMobileView = window.innerWidth <= 800;
-    if (isMobileView) {
-      this.onSidebarToggled(false);
-    }
-  };
-
   onSidebarToggled = bool => this.setState({ showSidebar: bool });
 
   render() {
@@ -49,16 +43,18 @@ class App extends React.Component {
       <div className="wrapper">
         <Router history={history}>
           {appInitialized && isSignedIn ? (
-            <Nav
+            <Sidebar
               toggled={showSidebar}
               setToggled={this.onSidebarToggled}
               dtScreenWidth={dtScreenWidth}
             />
           ) : null}
-          <div className="content" onClick={this.contentClickEvent}>
-            <div className={`logo ${isSignedIn ? "logo__signed-in" : ""}`}>
-              Group<span>Text</span>
-            </div>
+          <div className="content">
+            <Navbar
+              toggled={showSidebar}
+              setToggled={this.onSidebarToggled}
+              dtScreenWidth={dtScreenWidth}
+            />
             <Switch>
               <Route path="/admin" component={Admin} />
               <Route path="/">

@@ -2,7 +2,12 @@ import { takeLatest, put } from "redux-saga/effects";
 import store from "store";
 
 import server from "../../api/server";
-import { INIT_GROUP, INIT_GROUP_SAGA } from "../types";
+import {
+  INIT_GROUP,
+  INIT_GROUP_SAGA,
+  CHANGE_ACTIVE_GROUP,
+  INIT_APP
+} from "../types";
 
 function* initGroup({ groups }) {
   let activeGroupId = store.get("activeGroupId"),
@@ -36,8 +41,16 @@ function* initGroup({ groups }) {
   });
 }
 
+function* changeActiveGroup({ payload }) {
+  store.set("activeGroupId", payload.groupId);
+  yield put({ type: INIT_APP });
+}
+
 function createGroupSaga() {
-  return [takeLatest(INIT_GROUP_SAGA, initGroup)];
+  return [
+    takeLatest(INIT_GROUP_SAGA, initGroup),
+    takeLatest(CHANGE_ACTIVE_GROUP, changeActiveGroup)
+  ];
 }
 
 export default createGroupSaga;

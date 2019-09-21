@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Overview from "./Overview";
 import MessageResult from "./MessageResult/MessageResult";
 import server from "../../../../api/server";
+import { UPDATE_GROUP } from "../../../../redux/types";
 
 const HandleSendModal = props => {
   const [password, setPassword] = useState("");
@@ -36,6 +37,7 @@ const HandleSendModal = props => {
         props.clearMessage();
         setErrors({});
       }
+      props.updateActiveGroup(response.data.group);
       setMessageWasSuccessfull(true);
     } catch (err) {
       console.log(err);
@@ -113,4 +115,11 @@ const mapStateToProps = ({ group }) => ({
   group: group.activeGroup
 });
 
-export default connect(mapStateToProps)(HandleSendModal);
+const mapDispatchToProps = dispatch => ({
+  updateActiveGroup: group => dispatch({ type: UPDATE_GROUP, payload: group })
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HandleSendModal);

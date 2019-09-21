@@ -3,8 +3,6 @@ ul.number-list {
   padding-left: 0;
   max-height: 60vh;
   min-height: 20vh;
-  overflow: scroll;
-  overflow-x: hidden;
 
   .number {
     display: grid;

@@ -1,5 +1,13 @@
+import "react-toastify/dist/ReactToastify.css";
 import React from "react";
+import { ToastContainer, toast } from "react-toastify";
 import _ from "lodash";
+
+toast.configure({
+  position: "bottom-right",
+  draggable: false
+  //etc you get the idea
+});
 
 const Alerts = props => {
   const screenWidth = window.innerWidth;
@@ -11,43 +19,23 @@ const Alerts = props => {
 
   const renderNumberErrors = () => {
     if (props.alerts.number && screenWidth >= 990) {
-      return (
-        <div
-          className="alert alert-danger alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>{props.alerts.number}</strong>
-          <button
-            type="button"
-            className="close"
-            data-dismiss="alert"
-            aria-label="Close"
-            onClick={() => props.setAlerts(_.omit(props.alerts, "number"))}
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      );
+      toast.warn(props.alerts.number, {
+        toastId: "A",
+        onClose: () => {
+          props.setAlerts(_.omit(props.alerts, "number"));
+        }
+      });
     }
+
     if (props.alerts.success) {
-      return (
-        <div
-          className="alert alert-success alert-dismissible fade show"
-          role="alert"
-        >
-          <strong>{props.alerts.success}</strong>
-          <button
-            type="button"
-            className="close"
-            data-dismiss="alert"
-            aria-label="Close"
-            onClick={() => props.setAlerts(_.omit(props.alerts, "success"))}
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      );
+      toast.success(props.alerts.success, {
+        toastId: "B",
+        onClose: () => {
+          props.setAlerts(_.omit(props.alerts, "success"));
+        }
+      });
     }
+    return <ToastContainer autoClose={4000} position="bottom-right" />;
   };
 
   return <div style={style}>{renderNumberErrors()}</div>;

@@ -1,8 +1,9 @@
+import "./Group.scss";
 import React, { useState } from "react";
+import Alerts from "./Alerts/Alerts";
 import { connect } from "react-redux";
 
 import GroupActionbar from "./GroupActionbar/GroupActionbar";
-import Alerts from "./Alerts/Alerts";
 import PeopleList from "./PeopleList/PeopleList";
 import Pagination from "./Pagination/Pagination";
 
@@ -45,11 +46,11 @@ const Group = props => {
         searchString={searchString}
         onSearchStringChange={onSearchStringChange}
       />
-      <Alerts alerts={alerts} setAlerts={setAlerts} />
       <PeopleList
         searchString={searchString}
         page={page}
         people={peopleToBeRendered}
+        alerts={alerts}
         setAlerts={setAlerts}
         groupId={props.groupId}
       />
@@ -61,6 +62,7 @@ const Group = props => {
           maxLength={pageListLength}
         />
       )}
+      <Alerts alerts={alerts} setAlerts={setAlerts} />
     </div>
   );
 };

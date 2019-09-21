@@ -1,12 +1,21 @@
-import "./Nav.scss";
+import "./Sidebar.scss";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import history from "../../history";
-import Bucket from "./Bucket/Bucket";
+import { connect } from "react-redux";
+
+import history from "../../../history";
+import { SIGN_OUT } from "../../../redux/types";
+import MenuToggle from "../MenuToggle/MenuToggle";
 
 const initialActive = history.location.pathname;
 
-const Nav = ({ toggled, setToggled, dtScreenWidth }) => {
+const Sidebar = ({
+  toggled,
+  setToggled,
+  dtScreenWidth,
+  logout,
+  activeGroup
+}) => {
   const [active, setActive] = useState(initialActive);
 
   const onPageChange = newPath => {
@@ -18,14 +27,16 @@ const Nav = ({ toggled, setToggled, dtScreenWidth }) => {
     <div className={`sidebar ${toggled ? "show" : ""}`} id="sidebar-wrapper">
       <div className="sidebar-nav">
         <div className="nav-top">
-          <Link
-            to="/bucket"
-            className={`nav-link ${active === "/bucket" ? "bucket" : ""}`}
-          >
-            <Bucket />
+          <Link to="/" className="nav-link">
+            <div className="logo">
+              Group<span>Text</span>
+            </div>
           </Link>
-          <hr className="hr" />
+          {activeGroup && (
+            <MenuToggle toggled={toggled} setToggled={setToggled} />
+          )}
         </div>
+        <hr className="hr" />
         <div className="sidebar-list_group">
           <Link
             to="/"
@@ -50,16 +61,29 @@ const Nav = ({ toggled, setToggled, dtScreenWidth }) => {
           </Link>
         </div>
       </div>
-      <div>
-        <div
-          className="navbar-toggler ml-auto"
-          onClick={() => setToggled(toggled === true ? false : true)}
-        >
-          <i className="fa fa-bars" />
+      {!dtScreenWidth || !activeGroup ? (
+        <div className="form-inline">
+          <Link to="/group/add-group" className="btn btn-primary">
+            <i className="fa fa-plus"></i> New
+          </Link>
+          <button className="btn btn-primary" onClick={logout}>
+            Logout
+          </button>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };
 
-export default Nav;
+const mapStateToProps = ({ group }) => ({
+  activeGroup: group.activeGroup
+});
+
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch({ type: SIGN_OUT })
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Sidebar);

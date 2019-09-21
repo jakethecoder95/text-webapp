@@ -1,16 +1,23 @@
 ul.people-list {
-  padding-inline-start: none !important;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  position: relative;
+  padding-left: 0;
+  max-height: 68vh;
+  min-height: 20vh;
   .person {
     display: grid;
-    grid-template-columns: 2fr 1.75fr 0.5fr;
+    grid-template-columns: 1fr 1fr 0.75fr;
     list-style: none;
     align-items: center;
+    text-align: center;
+    font-size: 1em;
     padding: 0 5%;
-    height: 60px;
+    height: 50px;
     background-color: lighten(rgb(28, 32, 34), 1%);
+    cursor: pointer;
+    transition: box-shadow 100ms;
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr 1fr 0.2fr;
+    }
 
     &:nth-child(odd) {
       background-color: lighten(rgb(28, 32, 34), 3%);
@@ -26,5 +33,10 @@ ul.people-list {
       cursor: pointer;
       text-align: right;
     }
+  }
+  .alert {
+    font-size: 1em;
+    max-width: 90%;
+    margin: 1rem auto;
   }
 }

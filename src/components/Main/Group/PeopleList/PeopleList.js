@@ -27,9 +27,11 @@ const PeopleList = ({ people, updateGroup, setAlerts, groupId }) => {
   });
 
   return (
-    <ul className="people-list" style={{ paddingLeft: 0 }}>
-      {peopleList}
-    </ul>
+    <>
+      <ul className="people-list scrollbar" style={{ paddingLeft: 0 }}>
+        {peopleList}
+      </ul>
+    </>
   );
 };
 
