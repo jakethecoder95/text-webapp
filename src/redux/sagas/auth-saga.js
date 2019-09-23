@@ -22,7 +22,7 @@ function* signin({ payload }) {
   try {
     const response = yield server.post("/auth/login", { email, password });
     store.set("token", response.data.token);
-    store.set("groupId", response.data.user._id);
+    store.set("userId", response.data.user._id);
     yield put({ type: SIGN_IN_SUCCESS, payload: response.data });
   } catch (err) {
     if (err.response.status === 401) {
