@@ -8,10 +8,12 @@ import { SIGN_IN } from "../../../redux/types";
 
 const Login = props => {
   const [loggingIn, setLoggingIn] = useState(false);
-  const onSubmit = userInfo => {
+
+  const onSubmit = async userInfo => {
     setLoggingIn(true);
-    props.login(userInfo);
+    await props.login(userInfo);
   };
+
   const validate = values => {
     const errors = {};
     const loginError = props.asyncErrors;
@@ -26,6 +28,12 @@ const Login = props => {
       ) {
         errors.password = loginError.message;
       }
+    }
+    if (!values.email) {
+      errors.email = "required";
+    }
+    if (!values.password) {
+      errors.password = "Required";
     }
     return errors;
   };
