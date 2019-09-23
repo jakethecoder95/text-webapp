@@ -10,12 +10,16 @@ const FormField = ({
   toggleablePswField
 }) => (
   <div className="form-group">
-    <label>
-      {label}
-      {meta.touched && meta.error && (
-        <span style={{ color: "red", marginLeft: "15px" }}>* {meta.error}</span>
-      )}
-    </label>
+    {label && (
+      <label>
+        {label}
+        {meta.touched && meta.error && (
+          <span style={{ color: "red", marginLeft: "15px" }}>
+            * {meta.error}
+          </span>
+        )}
+      </label>
+    )}
     <input
       type={type ? type : "text"}
       {...input}

@@ -52,13 +52,44 @@ const Sidebar = ({
           >
             My Group
           </Link>
-          <Link
-            to="settings"
-            className={`nav-link ${active === "/settings" ? "active" : ""}`}
-            onClick={() => onPageChange("/settings")}
+          <a
+            className="nav-link"
+            data-toggle="collapse"
+            href="#collapseExample"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample"
           >
             Settings
-          </Link>
+            <i className="fa fa-chevron-down"></i>
+          </a>
+          <div
+            className={`sub-nav-list ${
+              active !== "/settings/group" && active !== "/settings/user"
+                ? "collapse"
+                : ""
+            }`}
+            id="collapseExample"
+          >
+            <Link
+              to="/settings/group"
+              className={`nav-link ${
+                active === "/settings/group" ? "active" : ""
+              }`}
+              onClick={() => onPageChange("/settings/group")}
+            >
+              Group
+            </Link>
+            <Link
+              to="/settings/user"
+              className={`nav-link ${
+                active === "/settings/user" ? "active" : ""
+              }`}
+              onClick={() => onPageChange("/settings/user")}
+            >
+              Personal
+            </Link>
+          </div>
         </div>
       </div>
       {!dtScreenWidth || !activeGroup ? (

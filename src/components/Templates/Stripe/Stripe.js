@@ -4,11 +4,11 @@ import { Elements, StripeProvider } from "react-stripe-elements";
 
 import StripeCard from "./StripeCard";
 
-const Stripe = ({ amount, onSubmit }) => {
+const Stripe = ({ onSubmit }) => {
   return (
-    <StripeProvider apiKey="pk_test_HMVX8wk4i8eY9ai8MvI4DRej">
+    <StripeProvider apiKey="pk_live_gKMLeNNHVIAvTv3CSNdlCsfV">
       <Elements>
-        <StripeCard amount={amount} onSubmit={onSubmit} />
+        <StripeCard onSubmit={onSubmit} />
       </Elements>
     </StripeProvider>
   );

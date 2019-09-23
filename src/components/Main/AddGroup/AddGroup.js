@@ -31,7 +31,11 @@ const AddGroup = props => {
         { tokenId: token.id, subscriptionAmount: amount, name, number },
         { headers: { Authorization: authString } }
       );
-      props.initGroup({ ...props.group, activeGroup: response.data.group });
+      props.initGroup({
+        ...props.group,
+        activeGroup: response.data.group,
+        groups: props.group.groups.push(response.data.group._id)
+      });
       setSubmitSuccessful(true);
     } catch (err) {
       if (err.response) {

@@ -4,34 +4,35 @@ import { connect } from "react-redux";
 import store from "store";
 
 import FormField from "../../../StarterPage/FormField/FormField";
+import isEmail from "../../../../util/validateEmail";
 import isPhoneNumber from "../../../../util/validatePhone";
-import Alerts from "../Alerts";
 import server from "../../../../api/server";
-import { UPDATE_GROUP } from "../../../../redux/types";
+import Alerts from "../Alerts";
+import { UPDATE_USER } from "../../../../redux/types";
 
-const NexmoInfo = props => {
+const PersonalInfoForm = props => {
   const [submitting, setSubmitting] = useState(false);
   const [alerts, setAlerts] = useState({ error: null, success: null });
-  const [asyncError, setAsyncError] = useState([]);
+  const [asyncError, setAsyncError] = useState({});
 
   const onSubmit = async info => {
     setSubmitting(true);
     const authString = `Bearer ${store.get("token")}`;
     try {
       const response = await server.post(
-        "/manage/update-nexmo-settings",
+        "/manage/update-personal-settings",
         { ...info },
         { headers: { Authorization: authString } }
       );
-      props.updateSettings(response.data.group);
+      props.updateUser(response.data.user);
       setAlerts({ error: null, success: "Updated Successfully" });
-      setAsyncError([]);
+      setAsyncError({});
     } catch (err) {
       if (err.response) {
         setAlerts({ success: null, error: err.response.data.message });
-        if (err.response.data.data) {
-          setAsyncError(err.response.data.data);
-        }
+        err.response.data.data
+          ? setAsyncError(err.response.data.data)
+          : setAsyncError(err.response.data);
       }
       console.log(err.response);
     }
@@ -40,24 +41,31 @@ const NexmoInfo = props => {
 
   const validate = values => {
     const errors = {};
-
     // Express validator errors
-    asyncError.forEach(err => {
-      if (values[err.param] === err.value) {
-        errors[err.param] = err.msg;
+    if (Array.isArray(asyncError)) {
+      asyncError.forEach(err => {
+        if (values[err.param] === err.value) {
+          errors[err.param] = err.msg;
+        }
+      });
+    } else {
+      // Non-express validator errors
+      if (values[asyncError.type] === asyncError.value) {
+        errors[asyncError.type] = asyncError.message;
       }
-    });
-
-    if (!values.nexmoNumber) {
-      errors.nexmoNumber = "Required";
-    } else if (!isPhoneNumber(values.nexmoNumber.trim())) {
-      errors.nexmoNumber = "Invalid phone number";
     }
-    if (!values.apiKey) {
-      errors.apiKey = "Required";
+    if (!values.email) {
+      errors.email = "Required";
+    } else if (!isEmail(values.email.trim())) {
+      errors.email = "Invalid email";
     }
-    if (!values.secretKey) {
-      errors.secretKey = "Required";
+    if (!values.name) {
+      errors.name = "Required";
+    }
+    if (!values.phoneNumber) {
+      errors.phoneNumber = "Required";
+    } else if (!isPhoneNumber(values.phoneNumber)) {
+      errors.phoneNumber = "Not a valid phone number";
     }
 
     return errors;
@@ -65,32 +73,26 @@ const NexmoInfo = props => {
 
   return (
     <Form
-      initialValues={{
-        nexmoNumber: props.group.nexmoNumber,
-        secretKey: props.group.secretKey,
-        apiKey: props.group.apiKey
-      }}
       onSubmit={onSubmit}
       validate={validate}
-      render={({ handleSubmit, pristine, invalid }) => (
+      initialValues={{
+        name: props.user.name,
+        email: props.user.email,
+        phoneNumber: props.user.phoneNumber
+      }}
+      render={({ handleSubmit, pristine, invalid, values }) => (
         <form onSubmit={handleSubmit} className="settings__form">
-          <h2 className="text-center">Your Nexmo Info</h2>
+          <h3 className="text-center">Your Personal Info</h3>
           <hr className="hr" />
 
           <Alerts setAlerts={setAlerts} {...alerts} />
 
+          <Field name="email" label="Email" component={FormField} />
+          <Field name="name" label="Name" component={FormField} />
           <Field
-            name="nexmoNumber"
-            label="Nexmo Number"
+            name="phoneNumber"
+            label="Phone Number"
             component={FormField}
-          />
-          <Field name="apiKey" label="API Key" component={FormField} />
-          <Field
-            name="secretKey"
-            label="Secret Key"
-            type="password"
-            component={FormField}
-            toggleablePswField
           />
           <button
             type="submit"
@@ -110,16 +112,16 @@ const NexmoInfo = props => {
   );
 };
 
-const mapStateToProps = ({ group }) => ({
-  group: group.activeGroup
+const mapStateToProps = ({ user }) => ({
+  user
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateSettings: newGroup =>
-    dispatch({ type: UPDATE_GROUP, payload: newGroup })
+  updateUser: updatedUser =>
+    dispatch({ type: UPDATE_USER, payload: updatedUser })
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NexmoInfo);
+)(PersonalInfoForm);

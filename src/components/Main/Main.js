@@ -24,7 +24,6 @@ const LoggedInPage = ({ hasActiveGroup }) => {
           component={() => renderIfActiveGroup(Group)}
         />
         <Route
-          exact
           path="/settings"
           component={() => renderIfActiveGroup(Settings)}
         />

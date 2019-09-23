@@ -18,6 +18,15 @@
   .is-toggled {
     display: block;
   }
+  .fa-chevron-down {
+    float: right;
+    margin-top: 13.5px;
+    font-size: 0.75em;
+  }
+  .sub-nav-list {
+    margin-left: 20px;
+    border-left: solid 2px rgba(204, 204, 204, 0.616);
+  }
   .nav-top {
     display: flex;
     justify-content: space-between;

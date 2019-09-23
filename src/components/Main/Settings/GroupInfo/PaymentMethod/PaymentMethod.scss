@@ -1,0 +1,20 @@
+.group-settings__payment {
+  span {
+    margin-right: 20px;
+    font-size: 1.2em;
+  }
+  .form-control {
+    height: 2.5em;
+  }
+  .col-2,
+  .col-10 {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .btn {
+    margin-bottom: 3px;
+  }
+  .stripe-card {
+    margin-top: 1rem;
+  }
+}

@@ -26,7 +26,7 @@ const FinalPage = ({ name, number, handleSubmit, errorMessage }) => {
       <hr className="hr" />
       <PurchaseSummary name={name} number={number} amount={amount} />
       {renderErrorMessage()}
-      <Stripe amount={amount} onSubmit={onSubmit} />
+      <Stripe onSubmit={onSubmit} />
     </div>
   );
 };
