@@ -44,7 +44,7 @@ const Text = props => {
         { groupId: props.group._id },
         { headers: { Authorization: authString } }
       );
-      props.updateGroup(response.data.group);
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
