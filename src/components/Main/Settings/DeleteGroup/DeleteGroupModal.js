@@ -16,7 +16,7 @@ const DeleteGroupModal = props => {
     setError(null);
     const authString = `Bearer ${store.get("token")}`;
     try {
-      const response = await server.delete("/group/delete-group", {
+      await server.delete("/group/delete-group", {
         data: {
           groupId: props.group._id,
           authString,
@@ -24,7 +24,6 @@ const DeleteGroupModal = props => {
         }
       });
       props.deletedGroup();
-      console.log(response);
       handleClose();
     } catch (err) {
       if (err.response) {
