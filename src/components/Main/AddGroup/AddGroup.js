@@ -34,7 +34,7 @@ const AddGroup = props => {
       props.initGroup({
         ...props.group,
         activeGroup: response.data.group,
-        groups: props.group.groups.push(response.data.group._id)
+        groups: props.group.groups.push(response.data.group)
       });
       setSubmitSuccessful(true);
     } catch (err) {
