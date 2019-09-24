@@ -19,7 +19,7 @@ const StripeCard = props => {
           onClick={submit}
           disabled={submitted}
         >
-          Pay
+          Submit
         </button>
       </div>
     </div>
