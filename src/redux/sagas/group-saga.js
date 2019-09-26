@@ -28,9 +28,11 @@ function* initGroup({ groups }) {
     } catch (err) {
       if (err.response.status === 401 || err.response.status === 403) {
         console.log(err.response);
-        return alert(
+        alert(
           "Looks like there was a problem connecting you to a group. If you are a group admin please contact the group owner. If the problem persists please call or email me at 530-401-8932, 95jacob07@gmail.com"
         );
+        store.remove("activeGroupId");
+        window.location.reload();
       }
       console.log(err);
     }

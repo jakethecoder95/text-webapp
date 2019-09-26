@@ -23,18 +23,22 @@ const AddGroup = props => {
 
   const handleSubmit = async (amount, token) => {
     setsubmitting(true);
-    const authString = `Bearer ${store.get("token")}`;
     setErrorMessage(null);
+    const authString = `Bearer ${store.get("token")}`;
     try {
       const response = await server.post(
         "/group/create-group",
         { tokenId: token.id, subscriptionAmount: amount, name, number },
         { headers: { Authorization: authString } }
       );
+      store.set("activeGroupId", response.data.group._id);
+      props.group.groups.push({
+        _id: response.data.group._id,
+        name: response.data.group.name
+      });
       props.initGroup({
         ...props.group,
-        activeGroup: response.data.group,
-        groups: props.group.groups.push(response.data.group)
+        activeGroup: response.data.group
       });
       setSubmitSuccessful(true);
     } catch (err) {
