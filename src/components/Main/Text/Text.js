@@ -3,10 +3,6 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import store from "store"; // To Delete
-import server from "../../../api/server"; // To Delete
-import Spinner from "../../Loading/Spinner"; // To Delete
-
 import MessageInput from "./MessageInput/MessageInput";
 import CharacterCnt from "./CharacterCnt/CharacterCnt";
 import SendTextBtn from "./SendTextBtn/SendTextBtn";
@@ -33,62 +29,6 @@ const Text = props => {
     };
   });
 
-  /*  To Delete */
-  const [syncing, setSyncing] = useState(false);
-  const sync = async path => {
-    setSyncing(true);
-    const authString = `Bearer ${store.get("token")}`;
-    try {
-      const response = await server.post(
-        path,
-        { groupId: props.group._id },
-        { headers: { Authorization: authString } }
-      );
-      window.location.reload();
-    } catch (err) {
-      console.log(err);
-    }
-    setSyncing(false);
-  };
-  /*  To Delete */
-  const actionButton = () => {
-    if (syncing) {
-      return <Spinner />;
-    }
-
-    if (props.user.email === "armory@crossroadslive.com") {
-      return (
-        <button
-          className="btn btn-primary"
-          onClick={() => {
-            sync("/manage/merge-armory");
-          }}
-        >
-          Sync Armory
-        </button>
-      );
-    }
-    if (props.user.email === "hsm@crossroadslive.com") {
-      return (
-        <button
-          className="btn btn-primary"
-          onClick={() => {
-            sync("/manage/merge-hsm");
-          }}
-        >
-          Sync HSM
-        </button>
-      );
-    }
-
-    return (
-      <Link className="btn btn-primary" to="/group">
-        Add Someone
-      </Link>
-    );
-  };
-  /*  To Delete */
-
   if (people.length === 0) {
     return (
       <div className="page-content text-center">
@@ -97,7 +37,9 @@ const Text = props => {
           <h1>
             <i className="fa fa-plus" />
           </h1>
-          {actionButton()}
+          <Link className="btn btn-primary" to="/group">
+            Add Someone
+          </Link>
         </div>
       </div>
     );
