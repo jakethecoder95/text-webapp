@@ -27,7 +27,12 @@ const MessageResult = ({
   return (
     <>
       {messageWasSuccessfull && (
-        <SuccessList nexmoErrors={errors.nexmo || []} />
+        <div className="text-center alert alert-success">
+          <i className="fa fa-check-circle" style={{ fontSize: "44px" }} />
+          <br />
+          Messages sent successfully
+        </div>
+        // <SuccessList nexmoErrors={errors.nexmo || []} />
       )}
       {errors.nexmo && (
         <ErrorList resendTexts={resendTexts} nexmoErrors={errors.nexmo} />
