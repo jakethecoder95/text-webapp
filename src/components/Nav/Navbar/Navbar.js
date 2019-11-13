@@ -15,6 +15,7 @@ const Navbar = ({
   appInitialized,
   isSignedIn,
   groups,
+  activeGroup,
   dtScreenWidth
 }) => {
   if (!appInitialized || !isSignedIn || groups.length === 0) {
@@ -29,8 +30,14 @@ const Navbar = ({
       <div className="form-inline">
         {!toggled && <MenuToggle toggled={toggled} setToggled={setToggled} />}
         <Dropdown />
+        {dtScreenWidth && (
+          <p className="nav-contact-amount">
+            There are <Link to="/group">{activeGroup.people.length}</Link>{" "}
+            contacts in your group.
+          </p>
+        )}
       </div>
-      {dtScreenWidth ? (
+      {dtScreenWidth && (
         <div className="form-inline">
           <Link to="/group/add-group" className="btn btn-primary">
             <i className="fa fa-plus"></i> New
@@ -39,7 +46,7 @@ const Navbar = ({
             Logout
           </button>
         </div>
-      ) : null}
+      )}
     </nav>
   );
 };
@@ -47,14 +54,12 @@ const Navbar = ({
 const mapStateToProps = ({ app, auth, group }) => ({
   appInitialized: app.appInitialized,
   isSignedIn: auth.isSignedIn,
-  groups: group.groups
+  groups: group.groups,
+  activeGroup: group.activeGroup
 });
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch({ type: SIGN_OUT })
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

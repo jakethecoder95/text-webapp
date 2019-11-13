@@ -10,7 +10,7 @@ const Overview = props => {
       className="text-center"
       style={{ maxWidth: "350px", margin: "1rem auto" }}
     >
-      <h4>Texts be sent to {props.groupName.toUpperCase()}:</h4>
+      <h4>Texts to be sent to {props.groupName.toUpperCase()}:</h4>
       <h1>{total}</h1>
       <p>
         Your sending {textsAmt} text{textsAmt > 1 ? "s" : ""} to{" "}

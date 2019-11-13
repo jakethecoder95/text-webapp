@@ -14,10 +14,7 @@ const DeleteGroup = ({ group, initApp }) => {
   return (
     <>
       <div style={style}>
-        <button
-          className="btn btn-outline-danger"
-          onClick={() => setShowModal(true)}
-        >
+        <button className="btn btn-danger" onClick={() => setShowModal(true)}>
           Delete {group.name}
         </button>
         <p className="text-danger">WARNING: This cannot be undone</p>
@@ -40,7 +37,4 @@ const mapDispatchToProps = dispatch => ({
   initApp: () => dispatch({ type: INIT_APP })
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DeleteGroup);
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteGroup);

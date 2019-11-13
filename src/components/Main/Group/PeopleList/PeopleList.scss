@@ -13,7 +13,6 @@ ul.people-list {
     padding: 0 5%;
     height: 50px;
     background-color: lighten(rgb(28, 32, 34), 1%);
-    cursor: pointer;
     transition: box-shadow 100ms;
     @media (max-width: 600px) {
       grid-template-columns: 1fr 1fr 0.2fr;
@@ -31,7 +30,8 @@ ul.people-list {
     }
     .close {
       cursor: pointer;
-      text-align: right;
+      width: 20px;
+      margin-left: 75%;
     }
   }
   .alert {

@@ -17,7 +17,7 @@ const Text = props => {
     [message, setMessage] = useState(initialState.message),
     [maxTextCharLength] = useState(160),
     [firstSendBtnClicked, setFirstSendBtnClicked] = useState(false),
-    [preMessageStr, setPreMessageStr] = useState(`${name} GroupText:`),
+    [preMessageStr, setPreMessageStr] = useState(`${name}:`),
     [postMessageStr, setPostMessageStr] = useState(
       "[No Reply. Text 2 to exit Group]"
     ),
@@ -94,7 +94,4 @@ const mapDispatchToProps = dispatch => ({
   updateGroup: group => dispatch({ type: UPDATE_GROUP, payload: group })
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Text);
+export default connect(mapStateToProps, mapDispatchToProps)(Text);
