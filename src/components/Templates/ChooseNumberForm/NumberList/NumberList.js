@@ -1,42 +1,11 @@
 import "./NumberList.scss";
 import React from "react";
-import ReactDOM from "react-dom";
 
 import Spinner from "../../../Loading/Spinner";
+import ScrollableListShadow from "../../ScrollableListShadow";
 
-class NumberList extends React.Component {
-  state = { scrolledTop: true, scrolledBottom: true };
-
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll, true);
-    this.DOMRef = ReactDOM.findDOMNode(this);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-
-  componentDidUpdate() {
-    const { scrollTop, scrollHeight, offsetHeight } = this.DOMRef;
-    const isBottom = scrollTop === scrollHeight - offsetHeight;
-    if (this.state.scrolledBottom && !isBottom) {
-      this.setState({ scrolledBottom: false });
-    }
-    if (!this.state.scrolledBottom && isBottom) {
-      this.setState({ scrolledBottom: true });
-    }
-  }
-
-  handleScroll = e => {
-    const { scrollTop, scrollHeight, offsetHeight } = e.target;
-    this.setState({
-      scrolledTop: scrollTop === 0,
-      scrolledBottom: scrollTop === scrollHeight - offsetHeight
-    });
-  };
-
-  renderContent = () => {
-    const { numbers, loading, onSelect, selectedNumber, error } = this.props;
+const NumberList = ({ numbers, loading, onSelect, selectedNumber, error }) => {
+  const renderContent = () => {
     if (error) {
       return <h4 className="alert alert-danger">Error: {error}</h4>;
     }
@@ -64,22 +33,11 @@ class NumberList extends React.Component {
     });
   };
 
-  render() {
-    const { loading, error } = this.props;
-    const shaddowBottomVisibility =
-      !this.state.scrolledBottom && !loading && !error ? "visible" : "hidden";
-
-    return (
-      <>
-        {!this.state.scrolledTop > 0 && <div className="shadow-top"></div>}
-        <ul className="number-list scrollbar">{this.renderContent()}</ul>
-        <div
-          className="shadow-bottom"
-          style={{ visibility: shaddowBottomVisibility }}
-        />
-      </>
-    );
-  }
-}
+  return (
+    <ScrollableListShadow>
+      <ul className="number-list scrollbar">{renderContent()}</ul>
+    </ScrollableListShadow>
+  );
+};
 
 export default NumberList;

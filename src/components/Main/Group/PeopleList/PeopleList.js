@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import Person from "./Person";
 import { UPDATE_GROUP } from "../../../../redux/types";
+import ScrollableListShadow from "../../../Templates/ScrollableListShadow";
 
 const PeopleList = ({ people, updateGroup, setAlerts, groupId }) => {
   if (people.length === 0) {
@@ -27,11 +28,11 @@ const PeopleList = ({ people, updateGroup, setAlerts, groupId }) => {
   });
 
   return (
-    <>
+    <ScrollableListShadow>
       <ul className="people-list scrollbar" style={{ paddingLeft: 0 }}>
         {peopleList}
       </ul>
-    </>
+    </ScrollableListShadow>
   );
 };
 
@@ -39,7 +40,4 @@ const mapDispatchToProps = dispatch => ({
   updateGroup: group => dispatch({ type: UPDATE_GROUP, payload: group })
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(PeopleList);
+export default connect(null, mapDispatchToProps)(PeopleList);

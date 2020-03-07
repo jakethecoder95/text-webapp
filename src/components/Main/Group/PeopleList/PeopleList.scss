@@ -1,8 +1,7 @@
 ul.people-list {
   position: relative;
   padding-left: 0;
-  max-height: 68vh;
-  min-height: 20vh;
+  height: 64vh;
   .person {
     display: grid;
     grid-template-columns: 1fr 1fr 0.75fr;
@@ -11,7 +10,7 @@ ul.people-list {
     text-align: center;
     font-size: 1em;
     padding: 0 5%;
-    height: 50px;
+    height: 40px;
     background-color: lighten(rgb(28, 32, 34), 1%);
     transition: box-shadow 100ms;
     @media (max-width: 600px) {

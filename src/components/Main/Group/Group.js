@@ -7,7 +7,7 @@ import GroupActionbar from "./GroupActionbar/GroupActionbar";
 import PeopleList from "./PeopleList/PeopleList";
 import Pagination from "./Pagination/Pagination";
 
-const pageListLength = 15;
+const pageListLength = 20;
 
 const Group = props => {
   const [alerts, setAlerts] = useState({});
