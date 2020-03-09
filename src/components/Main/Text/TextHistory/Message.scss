@@ -1,0 +1,41 @@
+.message {
+  list-style: none;
+  max-width: 700px;
+  margin: auto;
+  .message-bubble_body {
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 5px;
+  }
+}
+
+.outbound-bubble {
+  margin: 30px 40px 0 0;
+  .message-bubble_body {
+    background-color: #80808093;
+    border-top-left-radius: 0;
+  }
+  .message-bubble_subtext {
+    color: grey;
+    margin-left: 10px;
+  }
+}
+
+.inbound-bubble {
+  margin: 30px 0 0 40px;
+  .message-bubble_body {
+    background-color: #007bffcb;
+    border-top-right-radius: 0;
+  }
+  .message-bubble_subtext {
+    color: grey;
+    text-align: right;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .message .outbound-bubble .message-bubble_body {
+    margin-right: 0;
+  }
+}

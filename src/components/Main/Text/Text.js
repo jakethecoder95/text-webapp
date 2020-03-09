@@ -9,6 +9,7 @@ import SendTextBtn from "./SendTextBtn/SendTextBtn";
 import HandleSendModal from "./HandleSendModal/HandleSendModal";
 import MessageDefaultsInput from "./MessageDefaultsInput/MessageDefaultsInput";
 import { UPDATE_GROUP } from "../../../redux/types";
+import TextHistory from "./TextHistory/TextHistory";
 
 const initialState = { message: "" };
 
@@ -21,6 +22,7 @@ const Text = props => {
     [postMessageStr, setPostMessageStr] = useState(
       "[No Reply. Text 2 to exit Group]"
     ),
+    [textareaFocused, setTextareaFocused] = useState(false),
     finalMessage = `${preMessageStr}\n${message}\n${postMessageStr}`;
 
   useEffect(() => {
@@ -48,30 +50,44 @@ const Text = props => {
   return (
     <>
       <div className="page-content container">
-        <div className="text__content">
-          <MessageDefaultsInput
-            value={preMessageStr}
-            onValueChange={setPreMessageStr}
-          />
-          <MessageInput
-            message={message}
-            onMessageChange={msg => setMessage(msg)}
-          />
-          <MessageDefaultsInput
-            value={postMessageStr}
-            onValueChange={setPostMessageStr}
-          />
-          <div className="text-under">
-            <CharacterCnt
-              preMessageStr={preMessageStr}
-              postMessageStr={postMessageStr}
-              message={finalMessage}
-              maxTextCharLength={maxTextCharLength}
+        <div
+          className={`text-screen-container ${
+            textareaFocused ? "textarea_focus" : ""
+          }`}
+        >
+          <TextHistory groupId={props.group._id} />
+          <div className="text__content">
+            <MessageDefaultsInput
+              value={preMessageStr}
+              onValueChange={setPreMessageStr}
             />
-            <SendTextBtn
+            <MessageInput
               message={message}
-              handleBtnClicked={() => setFirstSendBtnClicked(true)}
+              onMessageChange={msg => setMessage(msg)}
+              handleTextareaFocus={setTextareaFocused}
             />
+            <MessageDefaultsInput
+              value={postMessageStr}
+              onValueChange={setPostMessageStr}
+            />
+            <div className="text-under">
+              <CharacterCnt
+                preMessageStr={preMessageStr}
+                postMessageStr={postMessageStr}
+                message={finalMessage}
+                maxTextCharLength={maxTextCharLength}
+              />
+              <div className="text-action-btns">
+                <i
+                  className="fa fa-chevron-down"
+                  onClick={() => setTextareaFocused(false)}
+                />
+                <SendTextBtn
+                  message={message}
+                  handleBtnClicked={() => setFirstSendBtnClicked(true)}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

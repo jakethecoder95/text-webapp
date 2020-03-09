@@ -1,7 +1,11 @@
 .text__content {
-  padding: 2rem 0;
-  max-width: 700px;
+  padding-top: 10px;
+  max-width: 800px;
   margin: 0 auto;
+}
+
+.text-screen-container {
+  height: 90vh;
 }
 
 .no-people {
@@ -29,9 +33,54 @@
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 5px;
+  .text-action-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90px;
 
+    .fa-chevron-down {
+      font-size: 1.5em;
+      visibility: hidden;
+      transition: 250ms;
+    }
+  }
   .btn {
     background-color: rgb(0, 195, 255);
     color: rgb(255, 255, 255);
   }
+}
+
+.text-history_container {
+  transition: 250ms;
+  height: 67%;
+}
+.text__content {
+  height: 33%;
+
+  .message-input {
+    textarea {
+      transition: 250ms;
+      height: 50px;
+    }
+  }
+}
+
+.text-screen-container.textarea_focus {
+  .text-history_container {
+    height: 37.75%;
+  }
+  .text__content {
+    height: 62.25%;
+
+    .message-input {
+      textarea {
+        height: 240px;
+      }
+    }
+  }
+}
+
+.textarea_focus .text-under .text-action-btns .fa-chevron-down {
+  visibility: visible;
 }

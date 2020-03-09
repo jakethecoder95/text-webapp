@@ -14,7 +14,7 @@ class ScrollableListShadow extends React.Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const { scrollTop, scrollHeight, offsetHeight } = this.DOMRef;
     const isBottom = scrollTop === scrollHeight - offsetHeight;
     if (this.state.scrolledBottom && !isBottom) {
@@ -23,6 +23,10 @@ class ScrollableListShadow extends React.Component {
     if (!this.state.scrolledBottom && isBottom) {
       this.setState({ scrolledBottom: true });
     }
+    if (!prevProps.startBottom && this.props.startBottom)
+      this.DOMRef.scrollTop = this.props.startBottom
+        ? this.DOMRef.scrollHeight
+        : this.DOMRef.scrollTop;
   }
 
   handleScroll = e => {
@@ -43,7 +47,7 @@ class ScrollableListShadow extends React.Component {
     return (
       <>
         {!this.state.scrolledTop > 0 && <div className="shadow-top"></div>}
-        <div>{children}</div>
+        <div style={{ paddingBottom: "20px" }}>{children}</div>
         <div
           className="shadow-bottom"
           style={{ visibility: shaddowBottomVisibility }}

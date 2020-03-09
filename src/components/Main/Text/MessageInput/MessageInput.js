@@ -5,7 +5,9 @@ const MessageInput = props => (
   <div className="message-input">
     <textarea
       value={props.message}
+      className="scrollbar scrollbar-dark"
       onChange={e => props.onMessageChange(e.target.value)}
+      onFocus={() => props.handleTextareaFocus(true)}
       placeholder="Type here..."
     />
   </div>

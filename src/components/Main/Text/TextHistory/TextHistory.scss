@@ -1,0 +1,12 @@
+.text-history_container {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+
+  .centered-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+}
