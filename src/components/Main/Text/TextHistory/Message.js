@@ -4,29 +4,35 @@ import { connect } from "react-redux";
 
 const Message = ({ message, group }) => {
   const isOutboundMessage = message.type === "outbound-api";
-  const classes = `${isOutboundMessage ? "outbound-bubble" : "inbound-bubble"}`;
+  const directionCSSClass = isOutboundMessage
+    ? "outbound-bubble"
+    : "inbound-bubble";
   const contact = group.people.find(person =>
     message.number ? person.number === message.number.replace("+", "") : false
   );
-  const messageBubbleSubtext = isOutboundMessage ? (
-    <>
-      {new Date(message.date).toLocaleDateString()} - sent:{" "}
-      <span className="text-success">{message.totalSent}</span>, errors:{" "}
-      <span className={message.errors ? "text-danger" : ""}>
-        {message.errors}
-      </span>
-    </>
-  ) : (
-    <>
-      {new Date(message.date).toLocaleDateString()} -{" "}
-      {contact ? contact.name : message.number}
-    </>
-  );
+  const renderSubtext = () => {
+    if (isOutboundMessage)
+      return (
+        <>
+          {new Date(message.date).toLocaleDateString()} - sent:{" "}
+          <span className="text-success">{message.totalSent}</span>, errors:{" "}
+          <span className={message.errors ? "text-danger" : ""}>
+            {message.errors}
+          </span>
+        </>
+      );
+    return (
+      <>
+        {new Date(message.date).toLocaleDateString()} -{" "}
+        {contact ? contact.name : message.number}
+      </>
+    );
+  };
   return (
-    <li className="message">
-      <div className={classes}>
+    <li className="single-message">
+      <div className={directionCSSClass}>
         <p className="message-bubble_body">{message.body}</p>
-        <p className="message-bubble_subtext">{messageBubbleSubtext}</p>
+        <p className="message-bubble_subtext">{renderSubtext()}</p>
       </div>
     </li>
   );
