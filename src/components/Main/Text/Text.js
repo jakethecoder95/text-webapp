@@ -14,16 +14,12 @@ import TextHistory from "./TextHistory/TextHistory";
 const initialState = { message: "" };
 
 const Text = props => {
-  const { people, name } = props.group,
+  const { people } = props.group,
     [message, setMessage] = useState(initialState.message),
     [maxTextCharLength] = useState(160),
     [firstSendBtnClicked, setFirstSendBtnClicked] = useState(false),
-    [preMessageStr, setPreMessageStr] = useState(`${name}:`),
-    [postMessageStr, setPostMessageStr] = useState(
-      "[No Reply. Text 2 to exit Group]"
-    ),
     [textareaFocused, setTextareaFocused] = useState(false),
-    finalMessage = `${preMessageStr}\n${message}\n${postMessageStr}`;
+    finalMessage = `${message}\n"[text 2 to unsubscribe]"`;
 
   useEffect(() => {
     return function cleanup() {
@@ -57,23 +53,14 @@ const Text = props => {
         >
           <TextHistory groupId={props.group._id} />
           <div className="text__content">
-            <MessageDefaultsInput
-              value={preMessageStr}
-              onValueChange={setPreMessageStr}
-            />
             <MessageInput
               message={message}
               onMessageChange={msg => setMessage(msg)}
               handleTextareaFocus={setTextareaFocused}
             />
-            <MessageDefaultsInput
-              value={postMessageStr}
-              onValueChange={setPostMessageStr}
-            />
+            <MessageDefaultsInput value={"[text 2 to unsubscribe]"} />
             <div className="text-under">
               <CharacterCnt
-                preMessageStr={preMessageStr}
-                postMessageStr={postMessageStr}
                 message={finalMessage}
                 maxTextCharLength={maxTextCharLength}
               />

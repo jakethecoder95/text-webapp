@@ -53,10 +53,10 @@
 
 .text-history_container {
   transition: 250ms;
-  height: 63%;
+  height: 65%;
 }
 .text__content {
-  height: 37%;
+  height: 35%;
 
   .message-input {
     textarea {
@@ -68,10 +68,10 @@
 
 .text-screen-container.textarea_focus {
   .text-history_container {
-    height: 35%;
+    height: 33%;
   }
   .text__content {
-    height: 65%;
+    height: 67%;
 
     .message-input {
       textarea {
