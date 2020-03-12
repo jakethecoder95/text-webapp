@@ -18,8 +18,7 @@ const Text = props => {
     [message, setMessage] = useState(initialState.message),
     [maxTextCharLength] = useState(160),
     [firstSendBtnClicked, setFirstSendBtnClicked] = useState(false),
-    [textareaFocused, setTextareaFocused] = useState(false),
-    finalMessage = `${message}\n"[text 2 to unsubscribe]"`;
+    [textareaFocused, setTextareaFocused] = useState(false);
 
   useEffect(() => {
     return function cleanup() {
@@ -61,7 +60,7 @@ const Text = props => {
             <MessageDefaultsInput value={"[text 2 to unsubscribe]"} />
             <div className="text-under">
               <CharacterCnt
-                message={finalMessage}
+                message={message + "\n[text 2 to unsubscribe]"}
                 maxTextCharLength={maxTextCharLength}
               />
               <div className="text-action-btns">
@@ -81,7 +80,7 @@ const Text = props => {
       <HandleSendModal
         show={firstSendBtnClicked}
         handleFirstSendBtnClicked={setFirstSendBtnClicked}
-        message={finalMessage}
+        message={message}
         clearMessage={() => setMessage("")}
       />
     </>
