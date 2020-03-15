@@ -7,8 +7,9 @@ import GroupActionbar from "./GroupActionbar/GroupActionbar";
 import PeopleList from "./PeopleList/PeopleList";
 import Pagination from "./Pagination/Pagination";
 import UploadInput from "./UploadInput/UploadInput";
+import PageCnt from "./PageCnt/PageCnt";
 
-const pageListLength = 20;
+const pageListLength = 30;
 
 const Group = props => {
   const [alerts, setAlerts] = useState({});
@@ -63,14 +64,23 @@ const Group = props => {
         setAlerts={setAlerts}
         groupId={props.groupId}
       />
-      {props.people.length > pageListLength && (
-        <Pagination
-          page={page}
-          onPageChange={setPage}
-          people={props.people}
-          maxLength={pageListLength}
+      <div className="group-page_bottom">
+        <PageCnt
+          currentPage={page}
+          pageCnt={Math.ceil(props.people.length / pageListLength)}
         />
-      )}
+        <div>
+          {props.people.length > pageListLength && (
+            <Pagination
+              page={page}
+              onPageChange={setPage}
+              people={props.people}
+              maxLength={pageListLength}
+            />
+          )}
+        </div>
+        <div className="text-success">{props.people.length} Contacts</div>
+      </div>
       <Alerts alerts={alerts} setAlerts={setAlerts} />
     </div>
   );
