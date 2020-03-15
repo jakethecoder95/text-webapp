@@ -9,6 +9,9 @@
   margin-top: -235px;
   transition: 250ms;
 
+  .custom-file {
+    margin-bottom: 1rem;
+  }
   .custom-file-label {
     background-color: #23282a;
     color: rgba(255, 255, 255, 0.548);
@@ -21,8 +24,12 @@
     }
   }
   button {
-    margin-top: 1rem;
     margin-right: 10px;
+  }
+  .text-danger {
+    margin-top: 15px;
+    line-height: 0.75em;
+    min-height: 1em;
   }
 }
 

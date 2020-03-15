@@ -7,6 +7,7 @@ import uploadService from "../uploadService";
 import { UPDATE_GROUP } from "../../../../redux/types";
 
 function UploadInput({ show, hide, groupId, updateGroup, setAlerts }) {
+  const [errorMessage, setErrorMessage] = useState("");
   const [file, setFile] = useState();
   const [fileName, setFileName] = useState("Select a CSV File");
   const [sending, setSending] = useState(false);
@@ -40,14 +41,28 @@ function UploadInput({ show, hide, groupId, updateGroup, setAlerts }) {
     }
     setFile(null);
     setFileName("Select a CSV File");
-    setSending(false);
+    setSending("");
   };
 
   const onFileChange = (fl, name) => {
+    const lowerCaseRegex = /.csv/;
+    const upperCaseRegex = /.CSV/;
+    if (!lowerCaseRegex.test(name) && !upperCaseRegex.test(name)) {
+      setErrorMessage("Must be a .csv or .CSV file.");
+      return;
+    }
     const formData = new FormData();
     formData.append("file", fl[0]);
     setFile(formData);
     setFileName(name);
+    setErrorMessage();
+  };
+
+  const onCancel = () => {
+    setFile(null);
+    setFileName("Select a CSV File");
+    setErrorMessage("");
+    hide();
   };
 
   return (
@@ -66,13 +81,14 @@ function UploadInput({ show, hide, groupId, updateGroup, setAlerts }) {
         <input
           type="file"
           id="customFile"
-          accept=".csv"
+          accept=""
           onChange={e => onFileChange(e.target.files, e.target.value)}
           disabled={sending}
         />
         <label className="custom-file-label" htmlFor="customFile">
           {fileName}
         </label>
+        <p className="text-danger">{errorMessage}</p>
       </div>
       <button
         type="submit"
@@ -81,7 +97,7 @@ function UploadInput({ show, hide, groupId, updateGroup, setAlerts }) {
       >
         Upload File
       </button>
-      <button type="button" className="btn btn-danger" onClick={hide}>
+      <button type="button" className="btn btn-danger" onClick={onCancel}>
         Cancel
       </button>
     </form>
