@@ -8,11 +8,11 @@ toast.configure({
 });
 
 const Alerts = props => {
-  if (props.alerts.number) {
-    toast.warn(props.alerts.number, {
+  if (props.alerts.warning) {
+    toast.warn(props.alerts.warning, {
       toastId: "A",
       onClose: () => {
-        props.setAlerts(_.omit(props.alerts, "number"));
+        props.setAlerts(_.omit(props.alerts, "warning"));
       }
     });
   }

@@ -1,0 +1,31 @@
+.group-upload-form {
+  max-width: 500px;
+  padding: 20px;
+  border: solid 1px rgba(255, 255, 255, 0.548);
+  border-radius: 20px;
+  box-shadow: 0 2px 8px #000;
+  height: 222px;
+  max-height: 222px;
+  margin-top: -235px;
+  transition: 250ms;
+
+  .custom-file-label {
+    background-color: #23282a;
+    color: rgba(255, 255, 255, 0.548);
+    border-color: rgba(255, 255, 255, 0.548);
+  }
+  .group-upload-form_top {
+    display: flex;
+    .spin {
+      margin-left: 20px;
+    }
+  }
+  button {
+    margin-top: 1rem;
+    margin-right: 10px;
+  }
+}
+
+.group-upload-form.show {
+  margin: 0;
+}

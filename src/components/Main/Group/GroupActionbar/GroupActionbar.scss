@@ -29,6 +29,12 @@
     .phone-number__input {
       max-width: 96.5%;
     }
+    .add-btn,
+    .upload-btn {
+      height: 39px;
+      margin-top: 5px;
+      margin-right: 10px;
+    }
 
     @media (max-width: 990px) {
       flex-direction: column;
@@ -38,8 +44,14 @@
     }
   }
 
-  .btn-outline-info {
-    color: rgb(0, 195, 255);
-    border-color: rgb(0, 195, 255);
+  .show {
+    box-shadow: none;
+  }
+
+  .upload-btn {
+    min-width: 100px;
+    .fa-download {
+      margin-right: 5px;
+    }
   }
 }

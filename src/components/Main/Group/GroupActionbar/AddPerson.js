@@ -16,9 +16,9 @@ const AddPerson = props => {
   const onSubmit = async e => {
     e.preventDefault();
     if (!isPhoneNumber(number)) {
-      return props.setAlerts({ number: "Phone number invalid" });
+      return props.setAlerts({ warning: "Phone number invalid" });
     }
-    props.setAlerts(_.omit(props.alerts, "number"));
+    props.setAlerts(_.omit(props.alerts, "warning"));
     const token = store.get("token");
     const authString = `Bearer ${token}`;
     const name = `${firstName} ${lastName}`;
@@ -35,7 +35,7 @@ const AddPerson = props => {
       props.updateGroup(response.data.group);
     } catch (err) {
       if (err.response.status === 401) {
-        props.setAlerts({ number: err.response.data.message });
+        props.setAlerts({ warning: err.response.data.message });
       }
       console.log(err.response);
     }
@@ -46,8 +46,8 @@ const AddPerson = props => {
     number.length > 0 && lastName.length > 0 && firstName.length > 0;
 
   const onNumberChange = e => {
-    if (props.alerts.number) {
-      props.setAlerts(_.omit(props.alerts, "number"));
+    if (props.alerts.warning) {
+      props.setAlerts(_.omit(props.alerts, "warning"));
     }
     setNumber(e.target.value);
   };
@@ -71,8 +71,8 @@ const AddPerson = props => {
               onChange={e => setLastName(e.target.value)}
             />
           </div>
-          {props.alerts.number && screenWidth < 990 && (
-            <div style={{ color: "red" }}>* {props.alerts.number}</div>
+          {props.alerts.warning && screenWidth < 990 && (
+            <div style={{ color: "red" }}>* {props.alerts.warning}</div>
           )}
           <input
             className="phone-number__input form-control"
@@ -80,8 +80,19 @@ const AddPerson = props => {
             value={number}
             onChange={onNumberChange}
           />
-          <button className="btn btn-info" disabled={!isValid}>
+          <button
+            type="submit"
+            className="btn btn-info add-btn"
+            disabled={!isValid}
+          >
             Add
+          </button>
+          <button
+            type="button"
+            className="btn btn-outline-success upload-btn"
+            onClick={() => props.showDownloadForm()}
+          >
+            <i className="fa fa-download"></i>Upload
           </button>
         </div>
       </form>
@@ -97,7 +108,4 @@ const mapStateToProps = ({ group }) => ({
   group: group.activeGroup
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AddPerson);
+export default connect(mapStateToProps, mapDispatchToProps)(AddPerson);

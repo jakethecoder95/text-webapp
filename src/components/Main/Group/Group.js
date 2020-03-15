@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import GroupActionbar from "./GroupActionbar/GroupActionbar";
 import PeopleList from "./PeopleList/PeopleList";
 import Pagination from "./Pagination/Pagination";
+import UploadInput from "./UploadInput/UploadInput";
 
 const pageListLength = 20;
 
@@ -13,6 +14,7 @@ const Group = props => {
   const [alerts, setAlerts] = useState({});
   const [searchString, setSearchString] = useState("");
   const [page, setPage] = useState(1);
+  const [showDownload, setShowDownload] = useState(false);
 
   const peopleToBeRendered = props.people
     // Filter out strings that don't match searchString
@@ -40,11 +42,18 @@ const Group = props => {
 
   return (
     <div className="group-page page-content container">
+      <UploadInput
+        setAlerts={setAlerts}
+        show={showDownload}
+        hide={() => setShowDownload(false)}
+        groupId={props.groupId}
+      />
       <GroupActionbar
         alerts={alerts}
         setAlerts={setAlerts}
         searchString={searchString}
         onSearchStringChange={onSearchStringChange}
+        showDownloadForm={() => setShowDownload(true)}
       />
       <PeopleList
         searchString={searchString}
