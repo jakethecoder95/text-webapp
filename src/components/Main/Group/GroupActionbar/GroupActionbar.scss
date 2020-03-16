@@ -17,29 +17,30 @@
   }
 
   .new-person__form {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1fr 1fr;
+    grid-column-gap: 5px;
     max-width: 500px;
-    .names {
-      display: flex;
-      width: 200%;
-    }
     input {
       margin: 5px;
     }
-    .phone-number__input {
-      max-width: 96.5%;
+    .add-btn {
+      margin-left: 5px;
     }
     .add-btn,
     .upload-btn {
-      height: 39px;
+      height: 37px;
+      width: 70px;
       margin-top: 5px;
-      margin-right: 10px;
     }
 
     @media (max-width: 990px) {
+      display: flex;
       flex-direction: column;
-      .names {
+      .add-btn,
+      .upload-btn {
         width: 100%;
+        margin-left: 0;
       }
     }
   }

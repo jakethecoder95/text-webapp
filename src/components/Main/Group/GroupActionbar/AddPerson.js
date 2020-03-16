@@ -9,8 +9,7 @@ import server from "../../../../api/server";
 import { UPDATE_GROUP } from "../../../../redux/types";
 
 const AddPerson = props => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [number, setNumber] = useState("");
 
   const onSubmit = async e => {
@@ -21,15 +20,14 @@ const AddPerson = props => {
     props.setAlerts(_.omit(props.alerts, "warning"));
     const token = store.get("token");
     const authString = `Bearer ${token}`;
-    const name = `${firstName} ${lastName}`;
+    let name = fullName.length > 0 ? fullName : "Unknown";
     try {
       const response = await server.put(
         "/manage/add-person",
         { name, number, groupId: props.group._id },
         { headers: { Authorization: authString } }
       );
-      setFirstName("");
-      setLastName("");
+      setFullName("");
       setNumber("");
       props.setAlerts({ success: "Person added successfully!" });
       props.updateGroup(response.data.group);
@@ -42,8 +40,7 @@ const AddPerson = props => {
   };
 
   const screenWidth = window.innerWidth;
-  const isValid =
-    number.length > 0 && lastName.length > 0 && firstName.length > 0;
+  const isValid = number.length > 0;
 
   const onNumberChange = e => {
     if (props.alerts.warning) {
@@ -57,20 +54,12 @@ const AddPerson = props => {
       <hr className="hr" />
       <form className="form" onSubmit={onSubmit}>
         <div className="new-person__form">
-          <div className="names">
-            <input
-              className="form-control"
-              placeholder="First Name"
-              value={firstName}
-              onChange={e => setFirstName(e.target.value)}
-            />
-            <input
-              className="form-control"
-              placeholder="Last Name"
-              value={lastName}
-              onChange={e => setLastName(e.target.value)}
-            />
-          </div>
+          <input
+            className="form-control"
+            placeholder="Full Name"
+            value={fullName}
+            onChange={e => setFullName(e.target.value)}
+          />
           {props.alerts.warning && screenWidth < 990 && (
             <div style={{ color: "red" }}>* {props.alerts.warning}</div>
           )}
