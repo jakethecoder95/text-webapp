@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import Person from "./Person";
 import { UPDATE_GROUP } from "../../../../redux/types";
-import ScrollableListShadow from "../../../Templates/ScrollableListShadow";
+import ScrollableListShadow from "../../../Templates/ScrollableListShadow/ScrollableListShadow";
 
 const PeopleList = ({ people, updateGroup, setAlerts, groupId }) => {
   if (people.length === 0) {

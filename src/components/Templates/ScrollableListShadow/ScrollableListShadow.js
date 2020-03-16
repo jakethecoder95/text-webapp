@@ -1,3 +1,4 @@
+import "./ScrollableListShadow.scss";
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -16,7 +17,8 @@ class ScrollableListShadow extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { scrollTop, scrollHeight, offsetHeight } = this.DOMRef;
-    const isBottom = scrollTop === scrollHeight - offsetHeight;
+    const isBottom =
+      Math.round(scrollTop) === Math.round(scrollHeight - offsetHeight);
     if (this.state.scrolledBottom && !isBottom) {
       this.setState({ scrolledBottom: false });
     }
@@ -33,7 +35,8 @@ class ScrollableListShadow extends React.Component {
     const { scrollTop, scrollHeight, offsetHeight } = e.target;
     this.setState({
       scrolledTop: scrollTop === 0,
-      scrolledBottom: scrollTop === scrollHeight - offsetHeight
+      scrolledBottom:
+        Math.round(scrollTop) === Math.round(scrollHeight - offsetHeight)
     });
   };
 
@@ -41,18 +44,12 @@ class ScrollableListShadow extends React.Component {
     const children = React.Children.map(this.props.children, (element, idx) => {
       return React.cloneElement(element, { ref: idx });
     });
-    const shaddowBottomVisibility = !this.state.scrolledBottom
-      ? "visible"
-      : "hidden";
     return (
-      <>
+      <div className="scrollable-list-shadow">
         {!this.state.scrolledTop > 0 && <div className="shadow-top"></div>}
         <div style={{ paddingBottom: "20px" }}>{children}</div>
-        <div
-          className="shadow-bottom"
-          style={{ visibility: shaddowBottomVisibility }}
-        />
-      </>
+        {!this.state.scrolledBottom && <div className="shadow-bottom" />}
+      </div>
     );
   }
 }

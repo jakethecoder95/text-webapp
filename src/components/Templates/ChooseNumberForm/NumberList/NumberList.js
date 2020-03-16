@@ -2,7 +2,7 @@ import "./NumberList.scss";
 import React from "react";
 
 import Spinner from "../../../Loading/Spinner";
-import ScrollableListShadow from "../../ScrollableListShadow";
+import ScrollableListShadow from "../../ScrollableListShadow/ScrollableListShadow";
 
 const NumberList = ({ numbers, loading, onSelect, selectedNumber, error }) => {
   const renderContent = () => {
