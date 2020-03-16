@@ -1,28 +1,12 @@
 import "./TextHistory.scss";
 import React, { useState, useEffect, useRef } from "react";
-import store from "store";
+import axios from "axios";
 
-import server from "../../../../api/server";
 import Spinner from "../../../Loading/Spinner";
 import MessageList from "./MessageList";
+import getTextHistory from "./get-text-history";
 
 const initialState = { textHistory: null };
-
-const getTextHistory = groupId => {
-  const token = store.get("token");
-  const authString = `Bearer ${token}`;
-  return new Promise(async (resolve, reject) => {
-    try {
-      const response = await server.get("/group/fetch-text-history", {
-        headers: { Authorization: authString },
-        params: { groupId }
-      });
-      resolve(response.data.textHistory);
-    } catch (err) {
-      reject(err);
-    }
-  });
-};
 
 const TextHistory = props => {
   const [textHistory, setTextHistory] = useState(initialState.textHistory);
@@ -30,9 +14,10 @@ const TextHistory = props => {
   const DOMRef = useRef(null);
 
   useEffect(() => {
+    const source = axios.CancelToken.source();
     if (!initialState.textHistory) {
       (async () => {
-        setTextHistory(await getTextHistory(props.groupId));
+        setTextHistory(await getTextHistory(props.groupId, source.token));
         initialState.textHistory = textHistory;
       })();
     }
@@ -40,6 +25,10 @@ const TextHistory = props => {
     if (DOMRef.current) {
       DOMRef.current.scrollTop = DOMRef.current.scrollHeight;
     }
+
+    return () => {
+      source.cancel("Operation canceled by the user.");
+    };
   }, [props.groupId, textHistory]);
 
   const renderContent = () => {
