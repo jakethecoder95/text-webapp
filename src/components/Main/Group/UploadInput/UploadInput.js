@@ -81,7 +81,7 @@ function UploadInput({ show, hide, groupId, updateGroup, setAlerts }) {
         <input
           type="file"
           id="customFile"
-          accept=""
+          accept=".csv"
           onChange={e => onFileChange(e.target.files, e.target.value)}
           disabled={sending}
         />
