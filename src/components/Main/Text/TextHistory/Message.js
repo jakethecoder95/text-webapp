@@ -10,24 +10,21 @@ const Message = ({ message, group }) => {
   const contact = group.people.find(person =>
     message.number ? person.number === message.number.replace("+", "") : false
   );
-  const renderSubtext = () => {
-    if (isOutboundMessage)
-      return (
-        <>
-          {new Date(message.date).toLocaleDateString()} - sent:{" "}
-          <span className="text-success">{message.totalSent}</span>, errors:{" "}
-          <span className={message.errors ? "text-danger" : ""}>
-            {message.errors}
-          </span>
-        </>
-      );
-    return (
+  const renderSubtext = () =>
+    isOutboundMessage ? (
+      <>
+        {new Date(message.date).toLocaleDateString()} - sent:{" "}
+        <span className="text-success">{message.totalSent}</span>, errors:{" "}
+        <span className={message.errors ? "text-danger" : ""}>
+          {message.errors}
+        </span>
+      </>
+    ) : (
       <>
         {new Date(message.date).toLocaleDateString()} -{" "}
-        {contact ? contact.name : message.number}
+        {contact && contact.name !== "Unknown" ? contact.name : message.number}
       </>
     );
-  };
   return (
     <li className="single-message">
       <div className={directionCSSClass}>
@@ -38,7 +35,7 @@ const Message = ({ message, group }) => {
   );
 };
 
-const mapStateToProps = ({ group, user }) => ({
+const mapStateToProps = ({ group }) => ({
   group: group.activeGroup
 });
 
