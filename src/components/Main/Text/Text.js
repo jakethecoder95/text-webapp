@@ -63,16 +63,10 @@ const Text = props => {
                 message={message + "\n[text 2 to unsubscribe]"}
                 maxTextCharLength={maxTextCharLength}
               />
-              <div className="text-action-btns">
-                <i
-                  className="fa fa-chevron-down"
-                  onClick={() => setTextareaFocused(false)}
-                />
-                <SendTextBtn
-                  message={message}
-                  handleBtnClicked={() => setFirstSendBtnClicked(true)}
-                />
-              </div>
+              <SendTextBtn
+                message={message}
+                handleBtnClicked={() => setFirstSendBtnClicked(true)}
+              />
             </div>
           </div>
         </div>

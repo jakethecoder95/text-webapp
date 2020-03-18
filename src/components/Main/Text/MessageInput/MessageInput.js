@@ -8,6 +8,7 @@ const MessageInput = props => (
       className="scrollbar scrollbar-dark"
       onChange={e => props.onMessageChange(e.target.value)}
       onFocus={() => props.handleTextareaFocus(true)}
+      onBlur={() => props.handleTextareaFocus(false)}
       placeholder="Type here..."
     />
   </div>
