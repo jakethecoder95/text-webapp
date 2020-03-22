@@ -74,8 +74,9 @@ function UploadInput({ show, hide, groupId, updateGroup, setAlerts }) {
         <div>
           <h2>Select a File</h2>
           <p>
-            Ensure the field of numbers you would like added have both the words
-            "Mobile" and "Phone" in it. We only accept .csv files.
+            Make sure the field of numbers you would like added have both the
+            words "Mobile" and "Phone" in it (upper or lower case). We only
+            accept .csv files.
           </p>
         </div>
         {sending && <Spinner />}
