@@ -73,7 +73,10 @@ function UploadInput({ show, hide, groupId, updateGroup, setAlerts }) {
       <div className="group-upload-form_top">
         <div>
           <h2>Select a File</h2>
-          <p>We only accept .csv files.</p>
+          <p>
+            Ensure the field of numbers you would like added have both the words
+            "Mobile" and "Phone" in it. We only accept .csv files.
+          </p>
         </div>
         {sending && <Spinner />}
       </div>
