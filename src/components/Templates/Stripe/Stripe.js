@@ -8,8 +8,8 @@ const Stripe = ({ onSubmit }) => {
 	const STRIPE_PUB_KEY =
 		process.env.NODE_ENV !== "production"
 			? "pk_test_rllRW3wqbQCLjJeIcXIaV4Q2"
-			: process.env.STRIPE_PUB_KEY;
-	
+			: "pk_live_gKMLeNNHVIAvTv3CSNdlCsfV";
+
 	console.log(STRIPE_PUB_KEY);
 
 	return (
