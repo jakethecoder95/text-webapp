@@ -10,8 +10,6 @@ const Stripe = ({ onSubmit }) => {
 			? "pk_test_rllRW3wqbQCLjJeIcXIaV4Q2"
 			: "pk_live_gKMLeNNHVIAvTv3CSNdlCsfV";
 
-	console.log(STRIPE_PUB_KEY);
-
 	return (
 		<StripeProvider apiKey={STRIPE_PUB_KEY}>
 			<Elements>
