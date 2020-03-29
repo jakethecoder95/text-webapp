@@ -74,6 +74,7 @@ const HandleSendModal = props => {
           onPasswordChange={setPassword}
           sending={sending}
           errors={errors}
+					maxTextCharLength={props.maxTextCharLength}
         />
         <MessageResult
           sending={sending}

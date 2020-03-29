@@ -16,7 +16,7 @@ const initialState = { message: "" };
 const Text = props => {
   const { people } = props.group,
     [message, setMessage] = useState(initialState.message),
-    [maxTextCharLength] = useState(160),
+    [maxTextCharLength] = useState(153),
     [firstSendBtnClicked, setFirstSendBtnClicked] = useState(false),
     [textareaFocused, setTextareaFocused] = useState(false);
 
@@ -76,6 +76,7 @@ const Text = props => {
         handleFirstSendBtnClicked={setFirstSendBtnClicked}
         message={message}
         clearMessage={() => setMessage("")}
+				maxTextCharLength={maxTextCharLength}
       />
     </>
   );
