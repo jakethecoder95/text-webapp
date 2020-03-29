@@ -5,13 +5,20 @@ import { Elements, StripeProvider } from "react-stripe-elements";
 import StripeCard from "./StripeCard";
 
 const Stripe = ({ onSubmit }) => {
-  return (
-    <StripeProvider apiKey="pk_live_gKMLeNNHVIAvTv3CSNdlCsfV">
-      <Elements>
-        <StripeCard onSubmit={onSubmit} />
-      </Elements>
-    </StripeProvider>
-  );
+	const STRIPE_PUB_KEY =
+		process.env.NODE_ENV !== "production"
+			? "pk_test_rllRW3wqbQCLjJeIcXIaV4Q2"
+			: process.env.STRIPE_PUB_KEY;
+	
+	console.log(STRIPE_PUB_KEY);
+
+	return (
+		<StripeProvider apiKey={STRIPE_PUB_KEY}>
+			<Elements>
+				<StripeCard onSubmit={onSubmit} />
+			</Elements>
+		</StripeProvider>
+	);
 };
 
 export default Stripe;
